@@ -26,8 +26,8 @@ class BillsView extends GetView<BillsController> {
               indicatorColor: AppColors.white,
               unselectedLabelColor: AppColors.white.withOpacity(0.6),
               tabs: const [
-                Tab(text: 'Details Info'),
-                Tab(text: 'Documents'),
+                Tab(text: 'Bills'),
+                Tab(text: 'History'),
               ],
               indicator: const UnderlineTabIndicator(borderSide: BorderSide(width: 2, color: Colors.white)),
             ),

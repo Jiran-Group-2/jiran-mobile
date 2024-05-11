@@ -127,7 +127,7 @@ class HomeMenu extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const AutoSizeText('Menu'),
+        const AutoSizeText('Menu', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
         const SizedBox(height: 8),
 
         GridView.count(
@@ -225,7 +225,7 @@ class AnnouncementCarousel extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const AutoSizeText('Latest Announcement', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
+        const AutoSizeText('Announcements', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
         const SizedBox(height: 16),
 
         Container(

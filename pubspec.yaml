@@ -26,6 +26,7 @@ dependencies:
   flutter_masked_text2: 0.9.1
   auto_size_text: 3.0.0
   carousel_slider: 4.2.1
+  qr_flutter: 4.1.0
   flutter: 
     sdk: flutter
 

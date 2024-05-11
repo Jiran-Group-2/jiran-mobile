@@ -9,6 +9,10 @@ abstract class Routes {
   static const BILLS = _Paths.BILLS;
   static const ANNOUNCEMENT = _Paths.ANNOUNCEMENT;
   static const COMPLAINT = _Paths.COMPLAINT;
+  static const BILLS_DETAIL = _Paths.BILLS_DETAIL;
+  static const VISITOR_DETAIL = _Paths.VISITOR_DETAIL;
+  static const ANNOUNCEMENT_DETAIL = _Paths.ANNOUNCEMENT_DETAIL;
+  static const COMPLAINT_DETAIL = _Paths.COMPLAINT_DETAIL;
 }
 
 abstract class _Paths {
@@ -19,4 +23,8 @@ abstract class _Paths {
   static const BILLS = '/bills';
   static const ANNOUNCEMENT = '/announcement';
   static const COMPLAINT = '/complaint';
+  static const BILLS_DETAIL = '/bills-detail';
+  static const VISITOR_DETAIL = '/visitor-detail';
+  static const ANNOUNCEMENT_DETAIL = '/announcement-detail';
+  static const COMPLAINT_DETAIL = '/complaint-detail';
 }

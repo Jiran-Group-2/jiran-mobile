@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:jiran_app/app/core/theme.dart';
+import 'package:jiran_app/app/routes/app_pages.dart';
 import 'package:jiran_app/app/widget/list_tile.dart';
 
 import '../controllers/visitor_controller.dart';
@@ -49,10 +50,11 @@ class VisitorView extends GetView<VisitorController> {
             itemCount: 3,
             shrinkWrap: true,
             itemBuilder: (context, index) {
-              return const AppListTile(
+              return AppListTile(
                 title: 'UTM 2913',
                 subtitle: 'MyVi 2024, Silver',
                 notes: '3 hours stay',
+                onTap: () => Get.toNamed(Routes.VISITOR_DETAIL),
               );
             }
           ),

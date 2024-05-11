@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:jiran_app/app/core/theme.dart';
+import 'package:jiran_app/app/routes/app_pages.dart';
 import 'package:jiran_app/app/widget/list_tile.dart';
 
 import '../controllers/announcement_controller.dart';
@@ -49,9 +50,10 @@ class AnnouncementView extends GetView<AnnouncementController> {
             itemCount: 3,
             shrinkWrap: true,
             itemBuilder: (context, index) {
-              return const AppListTile(
+              return AppListTile(
                 title: 'Water Disruption',
                 subtitle: 'Post Date: 03rd May 2024',
+                onTap: () => Get.toNamed(Routes.ANNOUNCEMENT_DETAIL),
               );
             }
           ),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:jiran_app/app/core/theme.dart';
+import 'package:jiran_app/app/routes/app_pages.dart';
 import 'package:jiran_app/app/widget/list_tile.dart';
 
 import '../controllers/complaint_controller.dart';
@@ -49,9 +50,10 @@ class ComplaintView extends GetView<ComplaintController> {
             itemCount: 3,
             shrinkWrap: true,
             itemBuilder: (context, index) {
-              return const AppListTile(
-                title: 'Leaking at Basement Area',
+              return AppListTile(
+                title: 'Pool too Dirty',
                 subtitle: '12th May 2024',
+                onTap: () => Get.toNamed(Routes.COMPLAINT_DETAIL),
               );
             }
           ),
