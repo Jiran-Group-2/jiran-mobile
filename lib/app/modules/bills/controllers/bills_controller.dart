@@ -1,23 +1,13 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 
-class BillsController extends GetxController {
-  //TODO: Implement BillsController
+class BillsController extends GetxController with GetTickerProviderStateMixin {
+  late final TabController tabController;
 
-  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
+    tabController  = TabController(length: 2, vsync: this);
   }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }
