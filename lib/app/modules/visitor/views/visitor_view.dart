@@ -46,18 +46,18 @@ class VisitorView extends GetView<VisitorController> {
               ],
             ),
           ),
-          ListView.builder(
-            itemCount: 3,
+          Obx(() => ListView.builder(
+            itemCount: controller.visitors.length,
             shrinkWrap: true,
             itemBuilder: (context, index) {
               return AppListTile(
-                title: 'UTM 2913',
-                subtitle: 'MyVi 2024, Silver',
-                notes: '3 hours stay',
-                onTap: () => Get.toNamed(Routes.VISITOR_DETAIL),
+                title: controller.visitors[index].visitorVehiclePlate,
+                subtitle: controller.visitors[index].visitorVehicle,
+                notes: controller.visitors[index].visitorName,
+                onTap: () => Get.toNamed(Routes.VISITOR_DETAIL, arguments: controller.visitors[index].obs),
               );
             }
-          ),
+          )),
         ],
       ),
       floatingActionButton: FloatingActionButton(

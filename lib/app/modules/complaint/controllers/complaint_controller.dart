@@ -1,23 +1,31 @@
 import 'package:get/get.dart';
+import 'package:jiran_app/app/data/models/complaint_model.dart';
+import 'package:jiran_app/app/data/providers/complaint_providers.dart';
+import 'package:jiran_app/controller_export.dart';
 
 class ComplaintController extends GetxController {
-  //TODO: Implement ComplaintController
 
-  final count = 0.obs;
+  ComplaintProvider complaintProvider = Get.find<ComplaintProvider>();
+  RxList<ComplaintModel> complaints = RxList<ComplaintModel>();
+  
   @override
   void onInit() {
     super.onInit();
+    getComplaint();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
+  getComplaint() async {
+    EasyLoading.show();
+    var response = await complaintProvider.getComplaint(1, 2);
 
-  @override
-  void onClose() {
-    super.onClose();
-  }
+    if (!verifyResponse(response)) {
+      AppError appError = response;
+      AppSnackbar.errorSnackbar(appError.message ?? 'An error occurred');
+      EasyLoading.dismiss();
+      return;
+    }
 
-  void increment() => count.value++;
+    complaints.value = response;
+    EasyLoading.dismiss();
+  }
 }

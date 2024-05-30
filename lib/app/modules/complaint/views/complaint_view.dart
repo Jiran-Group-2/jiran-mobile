@@ -46,17 +46,17 @@ class ComplaintView extends GetView<ComplaintController> {
               ],
             ),
           ),
-          ListView.builder(
-            itemCount: 3,
+          Obx(() => ListView.builder(
+            itemCount: controller.complaints.length,
             shrinkWrap: true,
             itemBuilder: (context, index) {
               return AppListTile(
-                title: 'Pool too Dirty',
-                subtitle: '12th May 2024',
-                onTap: () => Get.toNamed(Routes.COMPLAINT_DETAIL),
+                title: '${controller.complaints[index].complaintSubject}',
+                subtitle: '${controller.complaints[index].createdDate}',
+                onTap: () => Get.toNamed(Routes.COMPLAINT_DETAIL, arguments: controller.complaints[index].obs),
               );
             }
-          ),
+          )),
         ],
       ),
       floatingActionButton: FloatingActionButton(

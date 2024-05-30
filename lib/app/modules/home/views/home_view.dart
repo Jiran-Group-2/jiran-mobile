@@ -1,6 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import 'package:get/get.dart';
 import 'package:jiran_app/app/core/theme.dart';
@@ -31,13 +33,39 @@ class HomeView extends GetView<HomeController> {
                   child: const Icon(Icons.notifications_none_outlined),
                 ),
                 const SizedBox(width: 8,),
-                Container(
-                  padding: const EdgeInsets.all(4),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(80),
-                    border: Border.all(color: AppColors.grey)
+                GestureDetector(
+                  onTap: () {
+                    showCupertinoDialog(context: context, builder: (context) {
+                      return CupertinoAlertDialog(
+                        title: const Text('Log out'),
+                        content: const Text('Proceed with logging out?'),
+                        actions: [
+                          CupertinoDialogAction(
+                            isDefaultAction: true,
+                            onPressed: () {
+                              Get.back();
+                            },
+                            child: const Text('Cancel'),
+                          ),
+                          CupertinoDialogAction(
+                            isDestructiveAction: true,
+                            onPressed: () {
+                              Get.offAllNamed(Routes.LOGIN);
+                            },
+                            child: const Text('Yes'),
+                          ),
+                        ],
+                      );
+                    });
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(4),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(80),
+                      border: Border.all(color: AppColors.grey)
+                    ),
+                    child: const Icon(Icons.logout),
                   ),
-                  child: const Icon(Icons.settings),
                 ),
               ],
             ),

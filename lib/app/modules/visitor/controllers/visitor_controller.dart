@@ -1,23 +1,31 @@
 import 'package:get/get.dart';
+import 'package:jiran_app/app/data/models/visitor_model.dart';
+import 'package:jiran_app/app/data/providers/visitor_providers.dart';
+import 'package:jiran_app/controller_export.dart';
 
 class VisitorController extends GetxController {
-  //TODO: Implement VisitorController
 
-  final count = 0.obs;
+  VisitorProvider visitorProvider = Get.find<VisitorProvider>();
+  RxList<VisitorModel> visitors = RxList<VisitorModel>();
+
   @override
   void onInit() {
     super.onInit();
+    getVisitors();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
+  getVisitors() async {
+    EasyLoading.show();
+    var response = await visitorProvider.getVisitors();
 
-  @override
-  void onClose() {
-    super.onClose();
-  }
+    if (!verifyResponse(response)) {
+      AppError appError = response;
+      AppSnackbar.errorSnackbar(appError.message ?? 'An error occurred');
+      EasyLoading.dismiss();
+      return;
+    }
 
-  void increment() => count.value++;
+    visitors.value = response;
+    EasyLoading.dismiss();
+  }
 }

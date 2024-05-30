@@ -32,8 +32,8 @@ class VisitorDetailView extends GetView<VisitorDetailController> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const AutoSizeText('UTM 2913', 
-                    style: TextStyle(
+                  AutoSizeText(controller.visitor.value.visitorVehiclePlate ?? 'Plate Number', 
+                    style: const TextStyle(
                       color: AppColors.primary,
                       fontSize: 16,
                       fontWeight: FontWeight.bold
@@ -41,14 +41,14 @@ class VisitorDetailView extends GetView<VisitorDetailController> {
                     minFontSize: 12,
                     maxLines: 2,
                   ),
-                  const AutoSizeText('MyVi 2024, Silver', 
-                    style: TextStyle(
+                  AutoSizeText(controller.visitor.value.visitorVehicle ?? 'Vehicle',
+                    style: const TextStyle(
                       color: AppColors.black,
                       fontSize: 10,
                     ),
                     minFontSize: 8,
                   ),
-                  AutoSizeText('3 hours stay', 
+                  AutoSizeText(controller.visitor.value.visitorName ?? 'Visitor Name', 
                     style: TextStyle(
                       color: AppColors.grey.shade600,
                       fontSize: 10,
@@ -70,7 +70,7 @@ class VisitorDetailView extends GetView<VisitorDetailController> {
               padding: const EdgeInsets.all(16),
               child: Center(
                 child: QrImageView(
-                  data: 'https://youtu.be/dQw4w9WgXcQ?si=-64FRvJnUtAXVf08',
+                  data: controller.visitor.value.visitorId?.toString() ?? '0',
                   size: 250,
                 ),
               ),

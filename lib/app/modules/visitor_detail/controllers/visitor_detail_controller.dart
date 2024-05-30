@@ -1,23 +1,12 @@
 import 'package:get/get.dart';
+import 'package:jiran_app/app/data/models/visitor_model.dart';
 
 class VisitorDetailController extends GetxController {
-  //TODO: Implement VisitorDetailController
+  late Rx<VisitorModel> visitor;
 
-  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
+    visitor = Get.arguments;
   }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }
