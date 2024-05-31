@@ -20,7 +20,7 @@ class ComplaintProvider extends GetConnect {
     }
   }
 
-  getComplaint(int? systemId, int? userId) async {
+  getComplaints(int? systemId, int? userId) async {
     appLogger('$systemId, $userId');
     
     var response = await httpClient.get('/Complaint/GetComplaint?systemID=$systemId&userID=$userId');
@@ -36,4 +36,20 @@ class ComplaintProvider extends GetConnect {
       return AppError('Connection error!');
     }
   }
+
+  getComplaintCategory() async {
+    var response = await httpClient.get('/Complaint/GetComplaintCategory');
+    appLogger(response.request!.url);
+    appLogger(response.status.code);
+
+    if (response.status.isOk) {
+      appLogger(response.bodyString);
+      List<dynamic> jsonData = jsonDecode(response.bodyString!);
+      List<ComplaintCategoryModel> baseResponse = jsonData.map((json) => ComplaintCategoryModel.fromJson(json)).toList();
+      return baseResponse;
+    } else {
+      return AppError('Connection error!');
+    }
+  }
+  
 }

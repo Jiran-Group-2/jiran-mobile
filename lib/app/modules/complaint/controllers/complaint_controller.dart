@@ -16,7 +16,7 @@ class ComplaintController extends GetxController {
 
   getComplaint() async {
     EasyLoading.show();
-    var response = await complaintProvider.getComplaint(1, 2);
+    var response = await complaintProvider.getComplaints(1, 2);
 
     if (!verifyResponse(response)) {
       AppError appError = response;

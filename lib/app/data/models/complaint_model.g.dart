@@ -39,3 +39,25 @@ Map<String, dynamic> _$ComplaintModelToJson(ComplaintModel instance) =>
       'systemId': instance.systemId,
       'system': instance.system,
     };
+
+ComplaintCategoryModel _$ComplaintCategoryModelFromJson(
+        Map<String, dynamic> json) =>
+    ComplaintCategoryModel(
+      complaintCategoryId: (json['complaintCategoryId'] as num?)?.toInt(),
+      categoryName: json['categoryName'] as String?,
+      categoryDescription: json['categoryDescription'] as String?,
+      createdById: (json['createdById'] as num?)?.toInt(),
+      createdDate: json['createdDate'] == null
+          ? null
+          : DateTime.parse(json['createdDate'] as String),
+    );
+
+Map<String, dynamic> _$ComplaintCategoryModelToJson(
+        ComplaintCategoryModel instance) =>
+    <String, dynamic>{
+      'complaintCategoryId': instance.complaintCategoryId,
+      'categoryName': instance.categoryName,
+      'categoryDescription': instance.categoryDescription,
+      'createdById': instance.createdById,
+      'createdDate': instance.createdDate?.toIso8601String(),
+    };

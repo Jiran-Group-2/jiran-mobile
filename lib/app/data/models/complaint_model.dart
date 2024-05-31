@@ -36,3 +36,24 @@ class ComplaintModel {
 
     Map<String, dynamic> toJson() => _$ComplaintModelToJson(this);
 }
+
+@JsonSerializable()
+class ComplaintCategoryModel {
+    final int? complaintCategoryId;
+    final String? categoryName;
+    final String? categoryDescription;
+    final int? createdById;
+    final DateTime? createdDate;
+
+    ComplaintCategoryModel({
+        this.complaintCategoryId,
+        this.categoryName,
+        this.categoryDescription,
+        this.createdById,
+        this.createdDate,
+    });
+
+    factory ComplaintCategoryModel.fromJson(Map<String, dynamic> json) => _$ComplaintCategoryModelFromJson(json);
+
+    Map<String, dynamic> toJson() => _$ComplaintCategoryModelToJson(this);
+}

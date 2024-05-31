@@ -10,6 +10,8 @@ import '../modules/bills_detail/bindings/bills_detail_binding.dart';
 import '../modules/bills_detail/views/bills_detail_view.dart';
 import '../modules/complaint/bindings/complaint_binding.dart';
 import '../modules/complaint/views/complaint_view.dart';
+import '../modules/complaint_add/bindings/complaint_add_binding.dart';
+import '../modules/complaint_add/views/complaint_add_view.dart';
 import '../modules/complaint_detail/bindings/complaint_detail_binding.dart';
 import '../modules/complaint_detail/views/complaint_detail_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -79,6 +81,11 @@ class AppPages {
       name: _Paths.COMPLAINT_DETAIL,
       page: () => const ComplaintDetailView(),
       binding: ComplaintDetailBinding(),
+    ),
+    GetPage(
+      name: _Paths.COMPLAINT_ADD,
+      page: () => const ComplaintAddView(),
+      binding: ComplaintAddBinding(),
     ),
   ];
 }
