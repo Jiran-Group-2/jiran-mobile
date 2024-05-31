@@ -22,7 +22,7 @@ class LoginController extends GetxController {
   onReady() async {
     await Future.delayed(const Duration(seconds: 1));
     appLogger(storageProvider.getUserId());
-    storageProvider.getUserId() != null ? Get.toNamed(Routes.HOME) : null;
+    storageProvider.getUserId() != null ? Get.offAllNamed(Routes.HOME) : null;
   }
 
   login() async {

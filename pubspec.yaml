@@ -48,6 +48,7 @@ flutter_icons:
 flutter: 
   assets: 
     - assets/
+    - assets/images/
     - .env
   uses-material-design: true
 

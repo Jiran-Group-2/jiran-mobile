@@ -25,15 +25,6 @@ class HomeView extends GetView<HomeController> {
             padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
-                Container(
-                  padding: const EdgeInsets.all(4),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(80),
-                    border: Border.all(color: AppColors.grey)
-                  ),
-                  child: const Icon(Icons.notifications_none_outlined),
-                ),
-                const SizedBox(width: 8,),
                 GestureDetector(
                   onTap: () {
                     showCupertinoDialog(context: context, builder: (context) {
@@ -70,20 +61,24 @@ class HomeView extends GetView<HomeController> {
                     child: const Icon(Icons.logout),
                   ),
                 ),
+                const SizedBox(width: 8),
               ],
             ),
           ),
         ],
       ),
-      body: ListView(
-        padding: const EdgeInsets.all(16),
-        children: [
-          BillsCard(controller: controller),
-          const SizedBox(height: 16,),
-          HomeMenu(controller: controller),
-          const SizedBox(height: 16,),
-          AnnouncementCarousel(controller: controller),
-        ],
+      body: RefreshIndicator(
+        onRefresh: () => controller.getAnnouncements(),
+        child: ListView(
+          padding: const EdgeInsets.all(16),
+          children: [
+            BillsCard(controller: controller),
+            const SizedBox(height: 16,),
+            HomeMenu(controller: controller),
+            const SizedBox(height: 16,),
+            AnnouncementCarousel(controller: controller),
+          ],
+        ),
       ),
     );
   }
@@ -134,13 +129,7 @@ class BillsCard extends StatelessWidget {
           ),
           Expanded(
             flex: 3,
-              child: Container(
-              padding: const EdgeInsets.all(16),
-              margin: const EdgeInsets.all(16),
-              height: double.infinity,
-              width: double.infinity,
-              color: AppColors.primary,
-            )
+            child: Image.asset('assets/images/pay.png')
           ),
         ],
       ),

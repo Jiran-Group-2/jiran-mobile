@@ -20,45 +20,50 @@ class ComplaintView extends GetView<ComplaintController> {
         elevation: 0,
         centerTitle: false,
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const AutoSizeText('Your Complaints', 
-                  style: TextStyle(
-                    color: AppColors.black,
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold
-                  ),
-                  minFontSize: 12,
-                  maxLines: 2,
+      body: SingleChildScrollView(        
+        child: RefreshIndicator(
+          onRefresh: () => controller.getComplaints(),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const AutoSizeText('Your Complaints', 
+                      style: TextStyle(
+                        color: AppColors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold
+                      ),
+                      minFontSize: 12,
+                      maxLines: 2,
+                    ),
+                    AutoSizeText('Improvements that you suggested.', 
+                      style: TextStyle(
+                        color: AppColors.grey.shade600,
+                        fontSize: 10,
+                      ),
+                      minFontSize: 8,
+                    ),
+                  ],
                 ),
-                AutoSizeText('Improvements that you suggested.', 
-                  style: TextStyle(
-                    color: AppColors.grey.shade600,
-                    fontSize: 10,
-                  ),
-                  minFontSize: 8,
-                ),
-              ],
-            ),
+              ),
+              Obx(() => ListView.builder(
+                itemCount: controller.complaints.length,
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
+                  return AppListTile(
+                    title: '${controller.complaints[index].complaintSubject}',
+                    subtitle: dateTimeFormat.format(controller.complaints[index].createdDate!),
+                    onTap: () => Get.toNamed(Routes.COMPLAINT_DETAIL, arguments: controller.complaints[index].obs),
+                  );
+                }
+              )),
+            ],
           ),
-          Obx(() => ListView.builder(
-            itemCount: controller.complaints.length,
-            shrinkWrap: true,
-            itemBuilder: (context, index) {
-              return AppListTile(
-                title: '${controller.complaints[index].complaintSubject}',
-                subtitle: dateTimeFormat.format(controller.complaints[index].createdDate!),
-                onTap: () => Get.toNamed(Routes.COMPLAINT_DETAIL, arguments: controller.complaints[index].obs),
-              );
-            }
-          )),
-        ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => Get.toNamed(Routes.COMPLAINT_ADD)!.then((value) {

@@ -20,46 +20,49 @@ class VisitorView extends GetView<VisitorController> {
         centerTitle: false,
       ),
       body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const AutoSizeText('Upcoming Visitors', 
-                    style: TextStyle(
-                      color: AppColors.black,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold
+        child: RefreshIndicator(
+          onRefresh: () => controller.getVisitors(),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const AutoSizeText('Upcoming Visitors', 
+                      style: TextStyle(
+                        color: AppColors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold
+                      ),
+                      minFontSize: 12,
+                      maxLines: 2,
                     ),
-                    minFontSize: 12,
-                    maxLines: 2,
-                  ),
-                  AutoSizeText('Get your house ready!', 
-                    style: TextStyle(
-                      color: AppColors.grey.shade600,
-                      fontSize: 10,
+                    AutoSizeText('Get your house ready!', 
+                      style: TextStyle(
+                        color: AppColors.grey.shade600,
+                        fontSize: 10,
+                      ),
+                      minFontSize: 8,
                     ),
-                    minFontSize: 8,
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            Obx(() => ListView.builder(
-              itemCount: controller.visitors.length,
-              shrinkWrap: true,
-              itemBuilder: (context, index) {
-                return AppListTile(
-                  title: controller.visitors[index].visitorVehiclePlate,
-                  subtitle: controller.visitors[index].visitorVehicle,
-                  notes: controller.visitors[index].visitorName,
-                  onTap: () => Get.toNamed(Routes.VISITOR_DETAIL, arguments: controller.visitors[index].obs),
-                );
-              }
-            )),
-          ],
+              Obx(() => ListView.builder(
+                itemCount: controller.visitors.length,
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
+                  return AppListTile(
+                    title: controller.visitors[index].visitorVehiclePlate,
+                    subtitle: controller.visitors[index].visitorVehicle,
+                    notes: controller.visitors[index].visitorName,
+                    onTap: () => Get.toNamed(Routes.VISITOR_DETAIL, arguments: controller.visitors[index].obs),
+                  );
+                }
+              )),
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(

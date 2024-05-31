@@ -20,45 +20,50 @@ class AnnouncementView extends GetView<AnnouncementController> {
         elevation: 0,
         centerTitle: false,
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const AutoSizeText('Latest Announcements', 
-                  style: TextStyle(
-                    color: AppColors.black,
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold
-                  ),
-                  minFontSize: 12,
-                  maxLines: 2,
+      body: SingleChildScrollView(
+        child: RefreshIndicator(
+          onRefresh: () => controller.getAnnouncements(),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const AutoSizeText('Latest Announcements', 
+                      style: TextStyle(
+                        color: AppColors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold
+                      ),
+                      minFontSize: 12,
+                      maxLines: 2,
+                    ),
+                    AutoSizeText('This is what\'s happening, Doe.', 
+                      style: TextStyle(
+                        color: AppColors.grey.shade600,
+                        fontSize: 10,
+                      ),
+                      minFontSize: 8,
+                    ),
+                  ],
                 ),
-                AutoSizeText('This is what\'s happening, Doe.', 
-                  style: TextStyle(
-                    color: AppColors.grey.shade600,
-                    fontSize: 10,
-                  ),
-                  minFontSize: 8,
-                ),
-              ],
-            ),
+              ),
+              Obx(() => ListView.builder(
+                itemCount: controller.announcements.length,
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
+                  return AppListTile(
+                    title: '${controller.announcements[index].announcementSubject}',
+                    subtitle: dateTimeFormat.format(controller.announcements[index].createdDate!),
+                    onTap: () => Get.toNamed(Routes.ANNOUNCEMENT_DETAIL, arguments: controller.announcements[index].obs),
+                  );
+                }
+              )),
+            ],
           ),
-          Obx(() => ListView.builder(
-            itemCount: controller.announcements.length,
-            shrinkWrap: true,
-            itemBuilder: (context, index) {
-              return AppListTile(
-                title: '${controller.announcements[index].announcementSubject}',
-                subtitle: dateTimeFormat.format(controller.announcements[index].createdDate!),
-                onTap: () => Get.toNamed(Routes.ANNOUNCEMENT_DETAIL, arguments: controller.announcements[index].obs),
-              );
-            }
-          )),
-        ],
+        ),
       ),
     );
   }
