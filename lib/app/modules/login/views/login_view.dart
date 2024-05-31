@@ -130,7 +130,7 @@ class LoginView extends GetView<LoginController> {
                           ),
                           const SizedBox(height: 8),
                         
-                          const Center(
+                          /* const Center(
                             child: AutoSizeText.rich(
                               TextSpan(text: 'New? ', children: [
                                 TextSpan(text: 'Register here!', style: TextStyle(fontWeight: FontWeight.bold))
@@ -139,7 +139,7 @@ class LoginView extends GetView<LoginController> {
                                 fontSize: 12,
                               ),
                             ),
-                          ),
+                          ), */
                         ],
                       ),
                       ],
