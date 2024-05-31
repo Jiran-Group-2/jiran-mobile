@@ -3,6 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:jiran_app/app/core/formatter.dart';
 import 'package:jiran_app/app/core/theme.dart';
 
 import '../controllers/complaint_detail_controller.dart';
@@ -41,7 +42,7 @@ class ComplaintDetailView extends GetView<ComplaintDetailController> {
                     minFontSize: 12,
                     maxLines: 2,
                   ),
-                  AutoSizeText('${controller.complaintModel.value.createdDate}', 
+                  AutoSizeText(dateTimeFormat.format(controller.complaintModel.value.createdDate!), 
                     style: TextStyle(
                       color: AppColors.grey.shade600,
                       fontSize: 10,
@@ -59,7 +60,7 @@ class ComplaintDetailView extends GetView<ComplaintDetailController> {
                   ),
 
                   Obx(
-                    () => controller.complaintModel.value.attachmentId == null ? const SizedBox.shrink() : Column(
+                    () => controller.complaintModel.value.attachmentId == null || controller.complaintModel.value.attachmentId == 0  ? const SizedBox.shrink() : Column(
                       children: [
                         const SizedBox(height: 24),
                         

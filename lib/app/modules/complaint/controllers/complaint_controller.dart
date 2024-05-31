@@ -11,10 +11,10 @@ class ComplaintController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    getComplaint();
+    getComplaints();
   }
 
-  getComplaint() async {
+  getComplaints() async {
     EasyLoading.show();
     var response = await complaintProvider.getComplaints(1, 2);
 

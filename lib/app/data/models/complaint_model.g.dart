@@ -61,3 +61,27 @@ Map<String, dynamic> _$ComplaintCategoryModelToJson(
       'createdById': instance.createdById,
       'createdDate': instance.createdDate?.toIso8601String(),
     };
+
+ComplaintRequestModel _$ComplaintRequestModelFromJson(
+        Map<String, dynamic> json) =>
+    ComplaintRequestModel(
+      providedUserID: (json['providedUserID'] as num).toInt(),
+      providedComplaintCategoryID:
+          (json['providedComplaintCategoryID'] as num).toInt(),
+      providedComplaintLocation: json['providedComplaintLocation'] as String,
+      providedComplaintSubject: json['providedComplaintSubject'] as String,
+      providedComplaintDescription:
+          json['providedComplaintDescription'] as String,
+      providedSystemID: (json['providedSystemID'] as num).toInt(),
+    );
+
+Map<String, dynamic> _$ComplaintRequestModelToJson(
+        ComplaintRequestModel instance) =>
+    <String, dynamic>{
+      'providedUserID': instance.providedUserID,
+      'providedComplaintCategoryID': instance.providedComplaintCategoryID,
+      'providedComplaintLocation': instance.providedComplaintLocation,
+      'providedComplaintSubject': instance.providedComplaintSubject,
+      'providedComplaintDescription': instance.providedComplaintDescription,
+      'providedSystemID': instance.providedSystemID,
+    };

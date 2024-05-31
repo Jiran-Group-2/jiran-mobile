@@ -61,7 +61,11 @@ class ComplaintView extends GetView<ComplaintController> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () => Get.toNamed(Routes.COMPLAINT_ADD)!.then((value) {
+          if (value != null) {
+            controller.getComplaints();
+          }
+        }),
         backgroundColor: AppColors.primary,
         tooltip: 'Add new complaint',
         shape: const CircleBorder(),

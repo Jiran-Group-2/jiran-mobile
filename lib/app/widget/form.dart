@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class AppTextField extends StatelessWidget {
-  const AppTextField({super.key, required this.controller, this.title = 'Title', this.hintText, this.isRequired = false, this.keyboardType, this.textInputAction, this.inputFormatters});
+  const AppTextField({super.key, required this.controller, this.title = 'Title', this.hintText, this.isRequired = false, this.keyboardType, this.textInputAction, this.inputFormatters, this.readOnly = false});
 
   final TextEditingController controller;
   final String title;
   final String? hintText;
   final bool isRequired;
+  final bool readOnly;
   final TextInputType? keyboardType;
   final TextInputAction? textInputAction;
   final List<TextInputFormatter>? inputFormatters;
@@ -25,6 +26,7 @@ class AppTextField extends StatelessWidget {
           keyboardType: keyboardType ?? TextInputType.text,
           textInputAction: textInputAction ?? TextInputAction.next,
           inputFormatters: inputFormatters,
+          readOnly: readOnly,
           decoration: InputDecoration(
             fillColor: Colors.white,
             filled: true,

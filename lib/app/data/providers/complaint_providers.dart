@@ -46,5 +46,18 @@ class ComplaintProvider extends GetConnect {
       return AppError('Connection error!');
     }
   }
+
+  createComplaint(ComplaintRequestModel complaint) async {
+    var response = await httpClient.post('/Complaint/AddComplaint?providedUserID=${complaint.providedUserID}&providedComplaintCategoryID=${complaint.providedComplaintCategoryID}&providedComplaintLocation=${complaint.providedComplaintLocation}&providedComplaintSubject=${complaint.providedComplaintSubject}&providedComplaintDescription=${complaint.providedComplaintDescription}&providedSystemID=${complaint.providedSystemID}');
+    appLogger(response.request!.url);
+    appLogger(response.status.code);
+
+    if (response.status.isOk) {
+      appLogger(response.bodyString);
+      return true;
+    } else {
+      return AppError('Connection error!');
+    }
+  }
   
 }

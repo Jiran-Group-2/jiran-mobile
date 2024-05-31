@@ -30,6 +30,8 @@ class VisitorAddController extends GetxController {
       return;
     }
 
+    EasyLoading.show();
+
     visitor = VisitorRequestModel(
       providedVisitorName: visitorNameController.text,
       providedVisitorMobileNo: visitorMobileNoController.text,
@@ -44,7 +46,7 @@ class VisitorAddController extends GetxController {
 
     var response = await visitorProvider.registerVisitor(visitor!);
 
-     if (!verifyResponse(response)) {
+    if (!verifyResponse(response)) {
       AppError appError = response;
       AppSnackbar.errorSnackbar(appError.message ?? 'An error occurred');
       EasyLoading.dismiss();
