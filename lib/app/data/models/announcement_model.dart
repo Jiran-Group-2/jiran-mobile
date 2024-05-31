@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'announcement_model.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class AnnouncementModel {
     final int? announcementId;
     final String? announcementSubject;

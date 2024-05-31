@@ -13,6 +13,18 @@ class LoginController extends GetxController {
   TextEditingController passwordController = TextEditingController();
   RxBool isObscure = true.obs;
 
+  @override
+  onInit() {
+    super.onInit();
+  }
+
+  @override
+  onReady() async {
+    await Future.delayed(const Duration(seconds: 1));
+    appLogger(storageProvider.getUserId());
+    storageProvider.getUserId() != null ? Get.toNamed(Routes.HOME) : null;
+  }
+
   login() async {
     if (emailController.text.isEmpty || passwordController.text.isEmpty) {
       AppSnackbar.errorSnackbar('Please enter email and password');

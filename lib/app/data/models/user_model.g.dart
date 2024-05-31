@@ -54,11 +54,11 @@ Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
       'createdById': instance.createdById,
       'createdDate': instance.createdDate?.toIso8601String(),
       'roleId': instance.roleId,
-      'role': instance.role,
+      'role': instance.role?.toJson(),
       'systemId': instance.systemId,
-      'system': instance.system,
-      'title': instance.title,
-      'unitNumber': instance.unitNumber,
+      'system': instance.system?.toJson(),
+      'title': instance.title?.toJson(),
+      'unitNumber': instance.unitNumber?.toJson(),
     };
 
 RoleModel _$RoleModelFromJson(Map<String, dynamic> json) => RoleModel(
@@ -139,8 +139,8 @@ Map<String, dynamic> _$UnitNumberModelToJson(UnitNumberModel instance) =>
       'floorId': instance.floorId,
       'createdById': instance.createdById,
       'createdDate': instance.createdDate?.toIso8601String(),
-      'block': instance.block,
-      'floor': instance.floor,
+      'block': instance.block?.toJson(),
+      'floor': instance.floor?.toJson(),
     };
 
 BlockModel _$BlockModelFromJson(Map<String, dynamic> json) => BlockModel(
@@ -163,7 +163,7 @@ Map<String, dynamic> _$BlockModelToJson(BlockModel instance) =>
       'createdById': instance.createdById,
       'createdDate': instance.createdDate?.toIso8601String(),
       'systemId': instance.systemId,
-      'system': instance.system,
+      'system': instance.system?.toJson(),
     };
 
 FloorModel _$FloorModelFromJson(Map<String, dynamic> json) => FloorModel(
@@ -186,5 +186,5 @@ Map<String, dynamic> _$FloorModelToJson(FloorModel instance) =>
       'blockId': instance.blockId,
       'createdById': instance.createdById,
       'createdDate': instance.createdDate?.toIso8601String(),
-      'block': instance.block,
+      'block': instance.block?.toJson(),
     };

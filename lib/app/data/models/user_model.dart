@@ -7,7 +7,7 @@ List<UserModel> userModelFromJson(String str) => List<UserModel>.from(json.decod
 
 String userModelToJson(List<UserModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class UserModel {
     final int? userId;
     final String? userLogin;
@@ -56,7 +56,7 @@ class UserModel {
     Map<String, dynamic> toJson() => _$UserModelToJson(this);
 }
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class RoleModel {
     final int? roleId;
     final String? roleName;
@@ -75,7 +75,7 @@ class RoleModel {
     Map<String, dynamic> toJson() => _$RoleModelToJson(this);
 }
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class SystemModel {
     final int? systemId;
     final String? version;
@@ -102,7 +102,7 @@ class SystemModel {
     Map<String, dynamic> toJson() => _$SystemModelToJson(this);
 }
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class TitleModel {
     final int? titleId;
     final String? title;
@@ -117,7 +117,7 @@ class TitleModel {
     Map<String, dynamic> toJson() => _$TitleModelToJson(this);
 }
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class UnitNumberModel {
     final int? unitNumberId;
     final int? userId;
@@ -146,7 +146,7 @@ class UnitNumberModel {
     Map<String, dynamic> toJson() => _$UnitNumberModelToJson(this);
 }
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class BlockModel {
     final int? blockId;
     final String? blockName;
@@ -169,7 +169,7 @@ class BlockModel {
     Map<String, dynamic> toJson() => _$BlockModelToJson(this);
 }
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class FloorModel {
     final int? floorId;
     final String? floorName;

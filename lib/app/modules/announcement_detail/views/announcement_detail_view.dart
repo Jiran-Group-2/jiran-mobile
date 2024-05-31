@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:jiran_app/app/core/formatter.dart';
 import 'package:jiran_app/app/core/theme.dart';
 
 import '../controllers/announcement_detail_controller.dart';
@@ -13,7 +14,7 @@ class AnnouncementDetailView extends GetView<AnnouncementDetailController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Water Disruption'),
+        title: Text(controller.announcement.value.announcementSubject ?? 'Title'),
         centerTitle: false,
       ),
       body: ListView(
@@ -31,8 +32,8 @@ class AnnouncementDetailView extends GetView<AnnouncementDetailController> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const AutoSizeText('Water Disruption', 
-                    style: TextStyle(
+                  AutoSizeText(controller.announcement.value.announcementSubject ?? 'Title', 
+                    style: const TextStyle(
                       color: AppColors.black,
                       fontSize: 16,
                       fontWeight: FontWeight.bold
@@ -40,7 +41,7 @@ class AnnouncementDetailView extends GetView<AnnouncementDetailController> {
                     minFontSize: 12,
                     maxLines: 2,
                   ),
-                  AutoSizeText('Post Date: 03rd May 2024', 
+                  AutoSizeText('Post Date: ${dateOnlyFormat.format(controller.announcement.value.createdDate!)}', 
                     style: TextStyle(
                       color: AppColors.grey.shade600,
                       fontSize: 10,
@@ -49,9 +50,8 @@ class AnnouncementDetailView extends GetView<AnnouncementDetailController> {
                   ),
                   const SizedBox(height: 24),
 
-
-                  const AutoSizeText('Air Selangor ingin memaklumkan bahawa kerja-kerja penambahbaikan dan penyenggaraan aset-aset kritikal di Loji Rawatan Air Sungai Selangor  Fasa 1 (LRA SSP1) telah siap dilaksanakan pada jam 5:00 pagi, 28 Februari 2024.', 
-                    style: TextStyle(
+                  AutoSizeText(controller.announcement.value.announcementDescription ?? 'Description.', 
+                    style: const TextStyle(
                       color: AppColors.black,
                       fontSize: 10,
                     ),

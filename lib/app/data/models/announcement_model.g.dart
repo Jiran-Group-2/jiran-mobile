@@ -31,5 +31,5 @@ Map<String, dynamic> _$AnnouncementModelToJson(AnnouncementModel instance) =>
       'createdById': instance.createdById,
       'createdDate': instance.createdDate?.toIso8601String(),
       'systemId': instance.systemId,
-      'system': instance.system,
+      'system': instance.system?.toJson(),
     };

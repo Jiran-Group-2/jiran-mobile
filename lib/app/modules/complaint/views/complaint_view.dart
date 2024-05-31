@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:jiran_app/app/core/formatter.dart';
 import 'package:jiran_app/app/core/theme.dart';
 import 'package:jiran_app/app/routes/app_pages.dart';
 import 'package:jiran_app/app/widget/list_tile.dart';
@@ -52,7 +53,7 @@ class ComplaintView extends GetView<ComplaintController> {
             itemBuilder: (context, index) {
               return AppListTile(
                 title: '${controller.complaints[index].complaintSubject}',
-                subtitle: '${controller.complaints[index].createdDate}',
+                subtitle: dateTimeFormat.format(controller.complaints[index].createdDate!),
                 onTap: () => Get.toNamed(Routes.COMPLAINT_DETAIL, arguments: controller.complaints[index].obs),
               );
             }

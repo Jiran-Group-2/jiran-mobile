@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:jiran_app/app/core/formatter.dart';
 import 'package:jiran_app/app/core/theme.dart';
 import 'package:jiran_app/app/routes/app_pages.dart';
 import 'package:jiran_app/app/widget/list_tile.dart';
@@ -46,17 +47,17 @@ class AnnouncementView extends GetView<AnnouncementController> {
               ],
             ),
           ),
-          ListView.builder(
-            itemCount: 3,
+          Obx(() => ListView.builder(
+            itemCount: controller.announcements.length,
             shrinkWrap: true,
             itemBuilder: (context, index) {
               return AppListTile(
-                title: 'Water Disruption',
-                subtitle: 'Post Date: 03rd May 2024',
-                onTap: () => Get.toNamed(Routes.ANNOUNCEMENT_DETAIL),
+                title: '${controller.announcements[index].announcementSubject}',
+                subtitle: dateTimeFormat.format(controller.announcements[index].createdDate!),
+                onTap: () => Get.toNamed(Routes.ANNOUNCEMENT_DETAIL, arguments: controller.announcements[index].obs),
               );
             }
-          ),
+          )),
         ],
       ),
     );

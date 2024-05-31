@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 part 'app_model.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class AppError {
   final String? message;
 

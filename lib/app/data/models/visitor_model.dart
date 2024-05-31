@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 part 'visitor_model.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class VisitorModel {
     final int? visitorId;
     final String? visitorName;

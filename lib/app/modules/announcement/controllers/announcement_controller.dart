@@ -1,23 +1,31 @@
 import 'package:get/get.dart';
+import 'package:jiran_app/app/data/models/announcement_model.dart';
+import 'package:jiran_app/app/data/providers/announcement_providers.dart';
+import 'package:jiran_app/controller_export.dart';
 
 class AnnouncementController extends GetxController {
-  //TODO: Implement AnnouncementController
+ 
+  AnnouncementProvider announcementProvider = Get.find<AnnouncementProvider>();
+  RxList<AnnouncementModel> announcements = <AnnouncementModel>[].obs;
 
-  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
+    getAnnouncements();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
+  getAnnouncements() async {
+    EasyLoading.show();
+    var response = await announcementProvider.getAnnouncements();
 
-  @override
-  void onClose() {
-    super.onClose();
-  }
+    if (!verifyResponse(response)) {
+      AppError appError = response;
+      AppSnackbar.errorSnackbar(appError.message ?? 'An error occurred');
+      EasyLoading.dismiss();
+      return;
+    }
 
-  void increment() => count.value++;
+    announcements.value = response;
+    EasyLoading.dismiss();
+  }
 }

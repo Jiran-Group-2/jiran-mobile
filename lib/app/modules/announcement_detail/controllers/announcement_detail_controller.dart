@@ -1,23 +1,12 @@
 import 'package:get/get.dart';
+import 'package:jiran_app/app/data/models/announcement_model.dart';
 
 class AnnouncementDetailController extends GetxController {
-  //TODO: Implement AnnouncementDetailController
+  late Rx<AnnouncementModel> announcement;
 
-  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
+    announcement = Get.arguments;
   }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }

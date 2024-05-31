@@ -9,15 +9,10 @@ import 'package:jiran_app/app/data/providers/storage_provider.dart';
 
 class ComplaintProvider extends GetConnect {
   StorageProvider sp = Get.put(StorageProvider());
-  Map<String, String> defaultHeader = {};
 
   @override
   void onInit() async {
     httpClient.baseUrl = apiUrl;
-    String? token = Get.find<StorageProvider>().getToken();
-    if (token != null) {
-      defaultHeader['Authorization'] = 'Bearer $token';
-    }
   }
 
   getComplaints(int? systemId, int? userId) async {

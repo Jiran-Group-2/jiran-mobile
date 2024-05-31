@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:jiran_app/app/core/theme.dart';
+import 'package:jiran_app/app/data/models/announcement_model.dart';
+import 'package:jiran_app/app/data/providers/storage_provider.dart';
 import 'package:jiran_app/app/routes/app_pages.dart';
 
 import '../controllers/home_controller.dart';
@@ -49,6 +51,8 @@ class HomeView extends GetView<HomeController> {
                           CupertinoDialogAction(
                             isDestructiveAction: true,
                             onPressed: () {
+                              StorageProvider sp = Get.find<StorageProvider>();
+                              sp.logout();
                               Get.offAllNamed(Routes.LOGIN);
                             },
                             child: const Text('Yes'),
@@ -261,15 +265,12 @@ class AnnouncementCarousel extends StatelessWidget {
             color: AppColors.tertiary,
             borderRadius: BorderRadius.circular(16),
           ),
-          child: CarouselSlider(
-            items: [
-              AnnouncementWidget(controller: controller),
-              AnnouncementWidget(controller: controller),
-              AnnouncementWidget(controller: controller),
-            ],
-            options: CarouselOptions(
-              autoPlay: true,
-              enlargeCenterPage: true,
+          child: Obx(() => CarouselSlider(
+              items: controller.announcements.map((announcement) => AnnouncementWidget(announcement: announcement)).toList(),
+              options: CarouselOptions(
+                autoPlay: true,
+                enlargeCenterPage: true,
+              ),
             ),
           ),
         ),
@@ -279,13 +280,13 @@ class AnnouncementCarousel extends StatelessWidget {
 }
 
 class AnnouncementWidget extends StatelessWidget {
-  const AnnouncementWidget({super.key, required this.controller});
-  final HomeController controller;
+  const AnnouncementWidget({super.key, required this.announcement});
+  final AnnouncementModel announcement;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Get.toNamed(Routes.ANNOUNCEMENT),
+      onTap: () => Get.toNamed(Routes.ANNOUNCEMENT_DETAIL, arguments: announcement.obs),
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
@@ -294,12 +295,12 @@ class AnnouncementWidget extends StatelessWidget {
         ),
         child: Container(
           margin: const EdgeInsets.all(24),
-          child: const Column(
+          child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               AutoSizeText(
-                'Water Disruption',
-                style: TextStyle(
+                announcement.announcementSubject ?? 'Title',
+                style: const TextStyle(
                   color: AppColors.tertiary,
                   fontWeight: FontWeight.w500,
                   fontSize: 14,
@@ -308,8 +309,8 @@ class AnnouncementWidget extends StatelessWidget {
               ),
               Expanded(
                 child: AutoSizeText(
-                  'Ingin dimaklumkan bahawa kerja penambahbaikan aset kritikal di Loji Rawatan Air Sungai Selangor Fasa 1 (LRA SSP1) sedang dijalankan.',
-                  style: TextStyle(
+                  announcement.announcementDescription ?? 'Subtitle.',
+                  style: const TextStyle(
                     color: AppColors.tertiary,
                     fontWeight: FontWeight.bold,
                     fontSize: 18,

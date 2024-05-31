@@ -2,7 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'complaint_model.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class ComplaintModel {
     final int? complaintId;
     final int? userId;
@@ -37,7 +37,7 @@ class ComplaintModel {
     Map<String, dynamic> toJson() => _$ComplaintModelToJson(this);
 }
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class ComplaintCategoryModel {
     final int? complaintCategoryId;
     final String? categoryName;
