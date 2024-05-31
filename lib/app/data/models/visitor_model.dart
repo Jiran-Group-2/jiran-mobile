@@ -40,3 +40,31 @@ class VisitorModel {
     factory VisitorModel.fromJson(Map<String, dynamic> json) => _$VisitorModelFromJson(json);
     Map<String, dynamic> toJson() => _$VisitorModelToJson(this);
 }
+
+@JsonSerializable(explicitToJson: true)
+class VisitorRequestModel {
+    final String? providedVisitorName;
+    final String? providedVisitorMobileNo;
+    final String? providedVisitorNRIC;
+    final int? providedQuantity;
+    final String? providedPurposeOfVisit;
+    final int? providedVehicleType;
+    final String? providedPlateNo;
+    final int? providedUnitNumberID;
+    final int? providedCreatedByID;
+
+    VisitorRequestModel({
+        this.providedVisitorName,
+        this.providedVisitorMobileNo,
+        this.providedVisitorNRIC,
+        this.providedQuantity,
+        this.providedPurposeOfVisit,
+        this.providedVehicleType,
+        this.providedPlateNo,
+        this.providedUnitNumberID,
+        this.providedCreatedByID,
+    });
+
+    factory VisitorRequestModel.fromJson(Map<String, dynamic> json) => _$VisitorRequestModelFromJson(json);
+    Map<String, dynamic> toJson() => _$VisitorRequestModelToJson(this);
+}

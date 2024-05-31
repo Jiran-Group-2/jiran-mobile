@@ -14,6 +14,7 @@ abstract class Routes {
   static const ANNOUNCEMENT_DETAIL = _Paths.ANNOUNCEMENT_DETAIL;
   static const COMPLAINT_DETAIL = _Paths.COMPLAINT_DETAIL;
   static const COMPLAINT_ADD = _Paths.COMPLAINT_ADD;
+  static const VISITOR_ADD = _Paths.VISITOR_ADD;
 }
 
 abstract class _Paths {
@@ -29,4 +30,5 @@ abstract class _Paths {
   static const ANNOUNCEMENT_DETAIL = '/announcement-detail';
   static const COMPLAINT_DETAIL = '/complaint-detail';
   static const COMPLAINT_ADD = '/complaint-add';
+  static const VISITOR_ADD = '/visitor-add';
 }

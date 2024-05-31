@@ -20,6 +20,8 @@ import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/visitor/bindings/visitor_binding.dart';
 import '../modules/visitor/views/visitor_view.dart';
+import '../modules/visitor_add/bindings/visitor_add_binding.dart';
+import '../modules/visitor_add/views/visitor_add_view.dart';
 import '../modules/visitor_detail/bindings/visitor_detail_binding.dart';
 import '../modules/visitor_detail/views/visitor_detail_view.dart';
 
@@ -86,6 +88,11 @@ class AppPages {
       name: _Paths.COMPLAINT_ADD,
       page: () => const ComplaintAddView(),
       binding: ComplaintAddBinding(),
+    ),
+    GetPage(
+      name: _Paths.VISITOR_ADD,
+      page: () => const VisitorAddView(),
+      binding: VisitorAddBinding(),
     ),
   ];
 }

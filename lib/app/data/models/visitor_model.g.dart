@@ -44,3 +44,30 @@ Map<String, dynamic> _$VisitorModelToJson(VisitorModel instance) =>
       'qrFileName': instance.qrFileName,
       'qrExpiryDate': instance.qrExpiryDate,
     };
+
+VisitorRequestModel _$VisitorRequestModelFromJson(Map<String, dynamic> json) =>
+    VisitorRequestModel(
+      providedVisitorName: json['providedVisitorName'] as String?,
+      providedVisitorMobileNo: json['providedVisitorMobileNo'] as String?,
+      providedVisitorNRIC: json['providedVisitorNRIC'] as String?,
+      providedQuantity: (json['providedQuantity'] as num?)?.toInt(),
+      providedPurposeOfVisit: json['providedPurposeOfVisit'] as String?,
+      providedVehicleType: (json['providedVehicleType'] as num?)?.toInt(),
+      providedPlateNo: json['providedPlateNo'] as String?,
+      providedUnitNumberID: (json['providedUnitNumberID'] as num?)?.toInt(),
+      providedCreatedByID: (json['providedCreatedByID'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$VisitorRequestModelToJson(
+        VisitorRequestModel instance) =>
+    <String, dynamic>{
+      'providedVisitorName': instance.providedVisitorName,
+      'providedVisitorMobileNo': instance.providedVisitorMobileNo,
+      'providedVisitorNRIC': instance.providedVisitorNRIC,
+      'providedQuantity': instance.providedQuantity,
+      'providedPurposeOfVisit': instance.providedPurposeOfVisit,
+      'providedVehicleType': instance.providedVehicleType,
+      'providedPlateNo': instance.providedPlateNo,
+      'providedUnitNumberID': instance.providedUnitNumberID,
+      'providedCreatedByID': instance.providedCreatedByID,
+    };
