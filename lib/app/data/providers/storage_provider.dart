@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:jiran_app/app/core/logger.dart';
+import 'package:jiran_app/app/data/models/user_model.dart';
 
 class StorageProvider extends GetxService {
   GetStorage box = GetStorage();
@@ -14,11 +15,14 @@ class StorageProvider extends GetxService {
   Future<void> setToken(String token) async => await box.write("token", token);
   String? getToken() => box.read("token") as String?;
 
-  Future<void> setRole(String role) async => await box.write("role", role);
-  String? getRole() => box.read("role") as String?;
+  Future<void> setRole(int role) async => await box.write("role", role);
+  int? getRole() => box.read("role") as int?;
 
   Future<void> setEmail(String email) async => await box.write("email", email);
   String? getEmail() => box.read("email");
+
+  Future<void> setUser(UserModel user) async => await box.write("user", user.toJson());
+  UserModel? getUser() => UserModel.fromJson(box.read("user"));
 
   // isRequestDelete
   Future<void> setIsRequestDelete(bool isRequestDelete) async => await box.write("isRequestDelete", isRequestDelete);

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:jiran_app/app/core/theme.dart';
-import 'package:jiran_app/app/routes/app_pages.dart';
 
 import '../controllers/login_controller.dart';
 
@@ -151,7 +150,8 @@ class LoginView extends GetView<LoginController> {
                         children: [
                           Expanded(
                             child: InkWell(
-                              onTap: () => Get.offAllNamed(Routes.HOME),
+                              // onTap: () => Get.offAllNamed(Routes.HOME),
+                              onTap: () => controller.login(),
                               child: Container(
                                 height: 54,
                                 width: double.infinity,
