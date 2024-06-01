@@ -1,0 +1,125 @@
+{
+    "banks": [
+      {
+        "id": 1,
+        "name": "Affin Bank Berhad",
+        "code": "PHBMMYKL"
+      },
+      {
+        "id": 3,
+        "name": "Alliance Bank Malaysia Berhad",
+        "code": "MFBBMYKL"
+      },
+      {
+        "id": 5,
+        "name": "Al Rajhi Banking & Investment Corporation (Malaysia) Berhad",
+        "code": "RJHIMYKL"
+      },
+      {
+        "id": 6,
+        "name": "AmBank (M) Berhad",
+        "code": "ARBKMYKL"
+      },
+      {
+        "id": 7,
+        "name": "Bank Islam Malaysia Berhad",
+        "code": "BIMBMYKL"
+      },
+      {
+        "id": 8,
+        "name": "Bank Kerjasama Rakyat Malaysia Berhad",
+        "code": "BKRMYKL"
+      },
+      {
+        "id": 9,
+        "name": "Bank Muamalat Malaysia Berhad",
+        "code": "BMMBMYKL"
+      },
+      {
+        "id": 10,
+        "name": "Bank of China (Malaysia) Berhad",
+        "code": "BKCHMYKX"
+      },
+      {
+        "id": 11,
+        "name": "Bank Pertanian Malaysia Berhad (Agrobank)",
+        "code": "AGROMYKL"
+      },
+      {
+        "id": 12,
+        "name": "Bank Simpanan Nasional",
+        "code": "BSNAMYKL"
+      },
+      {
+        "id": 13,
+        "name": "CIMB Bank Berhad",
+        "code": "CIBBMYKL"
+      },
+      {
+        "id": 15,
+        "name": "Citibank Berhad",
+        "code": "CITIMYKL"
+      },
+      {
+        "id": 16,
+        "name": "Hong Leong Bank Berhad",
+        "code": "HLBBMYKL"
+      },
+      {
+        "id": 18,
+        "name": "HSBC Amanah Malaysia Berhad",
+        "code": "HBMBMYKL"
+      },
+      {
+        "id": 19,
+        "name": "HSBC Bank Malaysia Berhad",
+        "code": "HBMBMYKL"
+      },
+      {
+        "id": 20,
+        "name": "Industrial and Commercial Bank of China (Malaysia) Berhad",
+        "code": "ICBKMYKL"
+      },
+      {
+        "id": 21,
+        "name": "Kuwait Finance House",
+        "code": "KFHOMYKL"
+      },
+      {
+        "id": 22,
+        "name": "Malayan Banking Berhad",
+        "code": "MBBEMYKL"
+      },
+      {
+        "id": 23,
+        "name": "MBSB Bank Berhad",
+        "code": "MSBSMYKL"
+      },
+      {
+        "id": 24,
+        "name": "OCBC Bank (Malaysia) Berhad",
+        "code": "OCBCMYKL"
+      },
+      {
+        "id": 25,
+        "name": "Public Bank Berhad",
+        "code": "PBBEMYKL"
+      },
+      {
+        "id": 26,
+        "name": "RHB Bank Berhad",
+        "code": "RHBBMYKL"
+      },
+      {
+        "id": 28,
+        "name": "Standard Chartered Bank Malaysia Berhad",
+        "code": "SCBLMYKX"
+      },
+      {
+        "id": 30,
+        "name": "United Overseas Bank (Malaysia) Berhad",
+        "code": "UOVBMYKL"
+      }
+    ]
+  }
+  

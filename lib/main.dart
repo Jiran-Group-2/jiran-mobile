@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 
 import 'package:get/get.dart';
 import 'package:jiran_app/app/core/theme.dart';
@@ -14,6 +15,9 @@ void main() async {
   apiUrl = dotenv.env["API_URL"]!;
   stripePubKey = dotenv.env["STRIPE_PUB_KEY"]!;
   stripeSecret = dotenv.env["STRIPE_SECRET"]!;
+
+  Stripe.publishableKey = stripePubKey;
+  await Stripe.instance.applySettings();
 
   runApp(
     GetMaterialApp(

@@ -144,3 +144,16 @@ class Floor {
 
     Map<String, dynamic> toJson() => _$FloorToJson(this);
 }
+
+@JsonSerializable()
+class PayBillRequest {
+    final int unitNumberId;
+    final double providedAmount;
+    final double providedPaid;
+    final double providedBalance;
+
+  PayBillRequest({required this.unitNumberId, required this.providedAmount, required this.providedPaid, required this.providedBalance});
+
+  factory PayBillRequest.fromJson(Map<String, dynamic> json) => _$PayBillRequestFromJson(json);
+  Map<String, dynamic> toJson() => _$PayBillRequestToJson(this);
+}

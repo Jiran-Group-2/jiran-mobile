@@ -18,6 +18,8 @@ import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
+import '../modules/pay_sim_amount/bindings/pay_sim_amount_binding.dart';
+import '../modules/pay_sim_amount/views/pay_sim_amount_view.dart';
 import '../modules/visitor/bindings/visitor_binding.dart';
 import '../modules/visitor/views/visitor_view.dart';
 import '../modules/visitor_add/bindings/visitor_add_binding.dart';
@@ -93,6 +95,11 @@ class AppPages {
       name: _Paths.VISITOR_ADD,
       page: () => const VisitorAddView(),
       binding: VisitorAddBinding(),
+    ),
+    GetPage(
+      name: _Paths.PAY_SIM_AMOUNT,
+      page: () => const PaySimAmountView(),
+      binding: PaySimAmountBinding(),
     ),
   ];
 }

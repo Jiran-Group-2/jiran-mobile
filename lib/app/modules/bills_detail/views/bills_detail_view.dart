@@ -133,7 +133,7 @@ class BillsDetailView extends GetView<BillsDetailController> {
             ),
           ),
       ),
-      bottomNavigationBar: SafeArea(
+      bottomNavigationBar: controller.bill.value.isPending!.value ? SafeArea(
         child: SizedBox(
           height: 100,
           child: Container(
@@ -173,7 +173,7 @@ class BillsDetailView extends GetView<BillsDetailController> {
                   ],
                 )),
                 ElevatedButton(
-                  onPressed: () => Get.toNamed(Routes.BILLS),
+                  onPressed: () => Get.offAndToNamed(Routes.PAY_SIM_AMOUNT, arguments: controller.bill),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.primary
                   ),
@@ -183,7 +183,7 @@ class BillsDetailView extends GetView<BillsDetailController> {
             ),
           ),
         ),
-        )
+        ) : const SizedBox.shrink(),
     );
   }
 }
