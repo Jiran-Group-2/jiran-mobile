@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:jiran_app/app/core/theme.dart';
+import 'package:jiran_app/app/data/models/bill_model.dart';
+import 'package:jiran_app/app/routes/app_pages.dart';
 import 'package:jiran_app/app/widget/list_tile.dart';
 
 import '../controllers/bills_controller.dart';
@@ -26,8 +28,8 @@ class BillsView extends GetView<BillsController> {
               indicatorColor: AppColors.white,
               unselectedLabelColor: AppColors.white.withOpacity(0.6),
               tabs: const [
-                Tab(text: 'Bills'),
-                Tab(text: 'History'),
+                Tab(text: 'Pending'),
+                Tab(text: 'Paid'),
               ],
               indicator: const UnderlineTabIndicator(borderSide: BorderSide(width: 2, color: Colors.white)),
             ),
@@ -37,8 +39,8 @@ class BillsView extends GetView<BillsController> {
       body: TabBarView(
         controller: controller.tabController,
         children: [
-          BillsListView(controller: controller, isHistory: false),
-          BillsListView(controller: controller, isHistory: true),
+          BillsListView(controller: controller, bills: controller.pendingBills, isPending: true),
+          BillsListView(controller: controller, bills: controller.paidBills, isPending: false),
         ]
       )
     );
@@ -46,21 +48,34 @@ class BillsView extends GetView<BillsController> {
 }
 
 class BillsListView extends StatelessWidget {
-  const BillsListView({super.key, required this.controller, required this.isHistory});
+  const BillsListView({super.key, required this.controller, required this.bills, required this.isPending});
 
   final BillsController controller;
-  final bool isHistory;
+  final RxList<BillModel> bills;
+  final bool isPending;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16),
-      child: ListView.builder(
-        itemCount: 3,
-        shrinkWrap: true,
-        itemBuilder: (context, index) {
-          return const BillsListTile();
-        }
+      child: RefreshIndicator(
+        onRefresh: () => controller.getBills(),
+        // ignore: prefer_is_empty
+        child: Obx(() => bills.length != 0 ?ListView.builder(
+          itemCount: bills.length,
+          shrinkWrap: true,
+          itemBuilder: (context, index) {
+            final b = bills[index]; 
+            return GestureDetector(
+              onTap: () => Get.toNamed(Routes.BILLS_DETAIL, arguments: b.obs)!.then((value) {
+                if (value != null) {
+                  controller.getBills();
+                }
+              }),
+              child: BillsListTile(bill: b),
+            );
+          }
+        ) : const Center(child: Text('No bills here'),)),
       ),
     );
   }

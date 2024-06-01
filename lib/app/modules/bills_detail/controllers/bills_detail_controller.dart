@@ -1,23 +1,17 @@
 import 'package:get/get.dart';
+import 'package:jiran_app/app/data/models/bill_model.dart';
 
 class BillsDetailController extends GetxController {
-  //TODO: Implement BillsDetailController
+  late Rx<BillModel> bill;
+  RxBool isPending = true.obs;
 
-  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
-  }
+    bill = Get.arguments;
 
-  @override
-  void onReady() {
-    super.onReady();
+    if (bill.value.balance == 0.0) {
+      isPending(false);
+    }
   }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }

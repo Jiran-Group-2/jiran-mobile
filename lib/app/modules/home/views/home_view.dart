@@ -68,7 +68,7 @@ class HomeView extends GetView<HomeController> {
         ],
       ),
       body: RefreshIndicator(
-        onRefresh: () => controller.getAnnouncements(),
+        onRefresh: () => controller.onRefresh(),
         child: ListView(
           padding: const EdgeInsets.all(16),
           children: [
@@ -109,8 +109,8 @@ class BillsCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const AutoSizeText('Your current bills are:', style: TextStyle(color: AppColors.white, fontSize: 8, fontWeight: FontWeight.bold),),
-                  const AutoSizeText('RM 50.55', style: TextStyle(color: AppColors.white, fontSize: 38, fontWeight: FontWeight.bold),),
-                  const SizedBox(height: 16),
+                  Obx(() => AutoSizeText('RM ${controller.billAmount.value.toStringAsFixed(2)}', style: const TextStyle(color: AppColors.white, fontSize: 34, fontWeight: FontWeight.bold), minFontSize: 16)),
+                  const SizedBox(height: 8),
                   InkWell(
                     onTap: () => Get.toNamed(Routes.BILLS),
                     child: Container(
