@@ -4,8 +4,8 @@ import 'package:jiran_app/app/data/providers/storage_provider.dart';
 import 'package:jiran_app/app/data/providers/visitor_providers.dart';
 import 'package:jiran_app/controller_export.dart';
 
-class VisitorController extends GetxController {
-
+class GuardVisitorController extends GetxController {
+  
   StorageProvider sp = Get.find<StorageProvider>();
   VisitorProvider visitorProvider = Get.find<VisitorProvider>();
   RxList<VisitorModel> visitors = RxList<VisitorModel>();
@@ -18,7 +18,7 @@ class VisitorController extends GetxController {
 
   getVisitors() async {
     EasyLoading.show();
-    var response = await visitorProvider.getVisitorById(sp.getUser()!.unitNumberId!);
+    var response = await visitorProvider.getVisitors();
 
     if (!verifyResponse(response)) {
       AppError appError = response;

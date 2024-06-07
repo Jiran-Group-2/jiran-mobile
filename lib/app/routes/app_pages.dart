@@ -14,6 +14,16 @@ import '../modules/complaint_add/bindings/complaint_add_binding.dart';
 import '../modules/complaint_add/views/complaint_add_view.dart';
 import '../modules/complaint_detail/bindings/complaint_detail_binding.dart';
 import '../modules/complaint_detail/views/complaint_detail_view.dart';
+import '../modules/guard/bindings/guard_binding.dart';
+import '../modules/guard/guard_home/bindings/guard_home_binding.dart';
+import '../modules/guard/guard_home/views/guard_home_view.dart';
+import '../modules/guard/guard_visitor/bindings/guard_visitor_binding.dart';
+import '../modules/guard/guard_visitor/views/guard_visitor_view.dart';
+import '../modules/guard/guard_visitor_details/bindings/guard_visitor_details_binding.dart';
+import '../modules/guard/guard_visitor_details/views/guard_visitor_details_view.dart';
+import '../modules/guard/guard_visitor_scan/bindings/guard_visitor_scan_binding.dart';
+import '../modules/guard/guard_visitor_scan/views/guard_visitor_scan_view.dart';
+import '../modules/guard/views/guard_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/login/bindings/login_binding.dart';
@@ -100,6 +110,33 @@ class AppPages {
       name: _Paths.PAY_SIM_AMOUNT,
       page: () => const PaySimAmountView(),
       binding: PaySimAmountBinding(),
+    ),
+    GetPage(
+      name: _Paths.GUARD,
+      page: () => const GuardView(),
+      binding: GuardBinding(),
+      children: [
+        GetPage(
+          name: _Paths.GUARD_HOME,
+          page: () => const GuardHomeView(),
+          binding: GuardHomeBinding(),
+        ),
+        GetPage(
+          name: _Paths.GUARD_VISITOR,
+          page: () => const GuardVisitorView(),
+          binding: GuardVisitorBinding(),
+        ),
+        GetPage(
+          name: _Paths.GUARD_VISITOR_SCAN,
+          page: () => const GuardVisitorScanView(),
+          binding: GuardVisitorScanBinding(),
+        ),
+        GetPage(
+          name: _Paths.GUARD_VISITOR_DETAILS,
+          page: () => const GuardVisitorDetailsView(),
+          binding: GuardVisitorDetailsBinding(),
+        ),
+      ],
     ),
   ];
 }

@@ -48,7 +48,12 @@ class LoginController extends GetxController {
     storageProvider.setUserName(user[0].userLogin ?? '');
     storageProvider.setUser(user[0]);
 
-    Get.offAllNamed(Routes.HOME);
+    if (storageProvider.getRole() == 4) {
+      Get.offAllNamed(Routes.GUARD_HOME);
+    } else {
+      Get.offAllNamed(Routes.HOME);
+    }
+    
     EasyLoading.dismiss();
   }
 }

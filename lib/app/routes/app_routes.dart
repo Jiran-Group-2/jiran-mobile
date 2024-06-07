@@ -16,6 +16,12 @@ abstract class Routes {
   static const COMPLAINT_ADD = _Paths.COMPLAINT_ADD;
   static const VISITOR_ADD = _Paths.VISITOR_ADD;
   static const PAY_SIM_AMOUNT = _Paths.PAY_SIM_AMOUNT;
+  static const GUARD = _Paths.GUARD;
+  static const GUARD_HOME = _Paths.GUARD + _Paths.GUARD_HOME;
+  static const GUARD_VISITOR = _Paths.GUARD + _Paths.GUARD_VISITOR;
+  static const GUARD_VISITOR_SCAN = _Paths.GUARD + _Paths.GUARD_VISITOR_SCAN;
+  static const GUARD_VISITOR_DETAILS =
+      _Paths.GUARD + _Paths.GUARD_VISITOR_DETAILS;
 }
 
 abstract class _Paths {
@@ -33,4 +39,9 @@ abstract class _Paths {
   static const COMPLAINT_ADD = '/complaint-add';
   static const VISITOR_ADD = '/visitor-add';
   static const PAY_SIM_AMOUNT = '/pay-sim-amount';
+  static const GUARD = '/guard';
+  static const GUARD_HOME = '/guard-home';
+  static const GUARD_VISITOR = '/guard-visitor';
+  static const GUARD_VISITOR_SCAN = '/guard-visitor-scan';
+  static const GUARD_VISITOR_DETAILS = '/guard-visitor-details';
 }
