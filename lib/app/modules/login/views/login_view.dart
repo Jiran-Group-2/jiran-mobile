@@ -151,7 +151,8 @@ class LoginView extends GetView<LoginController> {
                           Expanded(
                             child: InkWell(
                               // onTap: () => Get.offAllNamed(Routes.HOME),
-                              onTap: () => controller.login(),
+                              onTap: () => controller.login('user'),
+                              onLongPress: () => controller.login('guard'),
                               child: Container(
                                 height: 54,
                                 width: double.infinity,

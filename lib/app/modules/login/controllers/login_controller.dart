@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jiran_app/app/core/variables.dart';
 import 'package:jiran_app/app/data/models/user_model.dart';
 import 'package:jiran_app/app/data/providers/storage_provider.dart';
 import 'package:jiran_app/app/data/providers/user_providers.dart';
@@ -14,18 +15,31 @@ class LoginController extends GetxController {
   RxBool isObscure = true.obs;
 
   @override
-  onInit() {
-    super.onInit();
-  }
-
-  @override
   onReady() async {
     await Future.delayed(const Duration(seconds: 1));
     appLogger(storageProvider.getUserId());
-    storageProvider.getUserId() != null ? Get.offAllNamed(Routes.HOME) : null;
+    //  ? Get.offAllNamed(Routes.HOME) : null;
+
+    if (storageProvider.getRole() != null) {
+      if (storageProvider.getRole() == 3) {
+        Get.offAllNamed(Routes.HOME);
+      } else if (storageProvider.getRole() == 4) {
+        Get.offAllNamed(Routes.GUARD_HOME);
+      }
+    }
   }
 
-  login() async {
+  login(String? role) async {
+    if (!isProd) {
+      if (role == 'guard') {
+        emailController.text = 'Guard1';
+        passwordController.text = 'Guard1';
+      } else if (role == 'user') {
+        emailController.text = 'hadzim';
+        passwordController.text = 'hadzim';
+      }
+    }
+    
     if (emailController.text.isEmpty || passwordController.text.isEmpty) {
       AppSnackbar.errorSnackbar('Please enter email and password');
       return;

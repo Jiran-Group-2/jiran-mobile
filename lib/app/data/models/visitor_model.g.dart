@@ -71,3 +71,31 @@ Map<String, dynamic> _$VisitorRequestModelToJson(
       'providedUnitNumberID': instance.providedUnitNumberID,
       'providedCreatedByID': instance.providedCreatedByID,
     };
+
+VisitorUpdateModel _$VisitorUpdateModelFromJson(Map<String, dynamic> json) =>
+    VisitorUpdateModel(
+      providedVisitorID: (json['providedVisitorID'] as num?)?.toInt(),
+      providedVisitorName: json['providedVisitorName'] as String?,
+      providedVisitorMobileNo: json['providedVisitorMobileNo'] as String?,
+      providedVisitorNRIC: json['providedVisitorNRIC'] as String?,
+      providedQuantity: json['providedQuantity'] as String?,
+      providedPurposeOfVisit: json['providedPurposeOfVisit'] as String?,
+      providedVehicleType: json['providedVehicleType'] as String?,
+      providedPlateNo: json['providedPlateNo'] as String?,
+      providedUnitNumberID: (json['providedUnitNumberID'] as num?)?.toInt(),
+      providedCreatedByID: (json['providedCreatedByID'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$VisitorUpdateModelToJson(VisitorUpdateModel instance) =>
+    <String, dynamic>{
+      'providedVisitorID': instance.providedVisitorID,
+      'providedVisitorName': instance.providedVisitorName,
+      'providedVisitorMobileNo': instance.providedVisitorMobileNo,
+      'providedVisitorNRIC': instance.providedVisitorNRIC,
+      'providedQuantity': instance.providedQuantity,
+      'providedPurposeOfVisit': instance.providedPurposeOfVisit,
+      'providedVehicleType': instance.providedVehicleType,
+      'providedPlateNo': instance.providedPlateNo,
+      'providedUnitNumberID': instance.providedUnitNumberID,
+      'providedCreatedByID': instance.providedCreatedByID,
+    };

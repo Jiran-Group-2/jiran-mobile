@@ -10,6 +10,7 @@ class AppButtonRounded extends StatelessWidget {
     this.height = 60,
     this.padding = const EdgeInsets.all(0.0),
     this.color, this.width, this.fontSize,
+    this.borderRadius = 30
   });
 
   final Function()? onTap;
@@ -19,6 +20,7 @@ class AppButtonRounded extends StatelessWidget {
   final double? width;
   final EdgeInsets padding;
   final double? fontSize;
+  final double borderRadius;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +34,7 @@ class AppButtonRounded extends StatelessWidget {
           decoration: BoxDecoration(
             color: color ?? AppColors.primary,
             border: Border.all(color: AppColors.white.withOpacity(0.8)),
-            borderRadius: BorderRadius.circular(30)
+            borderRadius: BorderRadius.circular(borderRadius),
           ),
           child: Center(child: AutoSizeText(title, style: TextStyle( color: AppColors.white, fontSize: fontSize ?? 16))),
         ),

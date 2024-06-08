@@ -70,7 +70,7 @@ class VisitorDetailView extends GetView<VisitorDetailController> {
               padding: const EdgeInsets.all(16),
               child: Center(
                 child: QrImageView(
-                  data: controller.visitor.value.visitorId?.toString() ?? '0',
+                  data: controller.visitor.value.unitNumberId?.toString() ?? '0',
                   size: 250,
                 ),
               ),
