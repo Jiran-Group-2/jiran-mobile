@@ -30,6 +30,8 @@ import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/pay_sim_amount/bindings/pay_sim_amount_binding.dart';
 import '../modules/pay_sim_amount/views/pay_sim_amount_view.dart';
+import '../modules/payment_gateway/bindings/payment_gateway_binding.dart';
+import '../modules/payment_gateway/views/payment_gateway_view.dart';
 import '../modules/visitor/bindings/visitor_binding.dart';
 import '../modules/visitor/views/visitor_view.dart';
 import '../modules/visitor_add/bindings/visitor_add_binding.dart';
@@ -106,11 +108,11 @@ class AppPages {
       page: () => const VisitorAddView(),
       binding: VisitorAddBinding(),
     ),
-    GetPage(
-      name: _Paths.PAY_SIM_AMOUNT,
-      page: () => const PaySimAmountView(),
-      binding: PaySimAmountBinding(),
-    ),
+    // GetPage(
+    //   name: _Paths.PAY_SIM_AMOUNT,
+    //   page: () => const PaySimAmountView(),
+    //   binding: PaySimAmountBinding(),
+    // ),
     GetPage(
       name: _Paths.GUARD,
       page: () => const GuardView(),
@@ -137,6 +139,11 @@ class AppPages {
           binding: GuardVisitorDetailsBinding(),
         ),
       ],
+    ),
+    GetPage(
+      name: _Paths.PAYMENT_GATEWAY,
+      page: () => const PaymentGatewayView(),
+      binding: PaymentGatewayBinding(),
     ),
   ];
 }

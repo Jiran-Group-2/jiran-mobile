@@ -16,6 +16,12 @@ void main() async {
   stripePubKey = dotenv.env["STRIPE_PUB_KEY"]!;
   stripeSecret = dotenv.env["STRIPE_SECRET"]!;
 
+  fpxMerchantPublicKey = dotenv.env["FPX_MERCHANT_PUBLIC_KEY"]!;
+  fpxMerchantApiKey = dotenv.env["FPX_MERCHANT_API_KEY"]!;
+  fpxSecretKey = dotenv.env["FPX_SECRET_KEY"]!;
+  fpxApiUrl = '${dotenv.env["FPX_API"]!}/$fpxMerchantPublicKey';
+  fpxResponseApiUrl = dotenv.env["FPX_RESPONSE_API"]!;
+
   Stripe.publishableKey = stripePubKey;
   await Stripe.instance.applySettings();
 

@@ -1,65 +1,153 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_masked_text2/flutter_masked_text2.dart';
-import 'package:get/get.dart';
-import 'package:jiran_app/app/data/models/bank_model.dart';
-import 'package:jiran_app/app/data/models/bill_model.dart';
-import 'package:jiran_app/app/data/providers/bill_providers.dart';
-import 'package:jiran_app/controller_export.dart';
+// import 'dart:async';
+// import 'dart:convert';
 
-class PaySimAmountController extends GetxController {
+// import 'package:crypto/crypto.dart';
+// import 'package:flutter/material.dart';
+// import 'package:flutter_dotenv/flutter_dotenv.dart';
+// import 'package:flutter_masked_text2/flutter_masked_text2.dart';
+// import 'package:get/get.dart';
+// import 'package:jiran_app/app/data/models/bank_model.dart';
+// import 'package:jiran_app/app/data/models/bill_model.dart';
+// import 'package:jiran_app/app/data/models/fpx_model.dart';
+// import 'package:jiran_app/app/data/providers/bill_providers.dart';
+// import 'package:jiran_app/controller_export.dart';
 
-  BillProvider billProvider = Get.find<BillProvider>();
-  RxList<BankModel> banks = <BankModel>[].obs;
-  Rxn<BankModel> selectedBank = Rxn<BankModel>();
+// class PaySimAmountController extends GetxController {
 
-  final formKey = GlobalKey<FormState>();
+//   String? newRoute;
 
-  MoneyMaskedTextController makePaymentController = MoneyMaskedTextController(
-    initialValue: 0.0,
-    decimalSeparator: '.',
-    thousandSeparator: ',',
-  );
+//   FpxModel? fpxModel;
+//   String? fpxMerchantApiKey;
+//   String? fpxMerchantPublicKey;
+//   String? fpxSecretKey;
 
-  Rx<BillModel> bill = BillModel().obs;
+//   Uri? url;
+//   PayResult? payResult;
+//   RxBool isLoading = false.obs;
+//   // List<PaymentRequeryData>? paymentRequery = [];
 
-  @override
-  void onInit() {
-    super.onInit();
-    bill = Get.arguments;
-    getBanks();
-  }
+//   Uri triggerUrl = Uri.parse(dotenv.env['triggerUrl']!);
+//   Uri triggerUrlAffin = Uri.parse(dotenv.env['triggerUrlAffin']!);
 
-  getBanks() async {
-    EasyLoading.show();
-    banks.value = await billProvider.getBanks();
-    selectedBank.value = banks.first;
-    EasyLoading.dismiss();
-  }
+//   double progress = 0;
+//   int countdown = 5;
+//   Timer? timer;
+//   bool isCountdown = false;
+//   bool isCanGoBack = true;
+//   String? category;
 
-  payBill() async {
-    if (!formKey.currentState!.validate()) {
-      AppSnackbar.errorSnackbar('Please complete the form');
-      return;
-    }
+//   @override
+//   void onInit() async {
+//     category = Get.arguments['category'];
+//     if (category == 'Biller') {
+//       fpxMerchantApiKey = dotenv.env['billFpxMerchantApiKey']!;
+//       fpxMerchantPublicKey = dotenv.env['billerFpxMerchantPublicKey']!;
+//       fpxSecretKey = dotenv.env['billFpxSecretKey']!;
 
-    EasyLoading.show();
-    PayBillRequest request = PayBillRequest(
-      unitNumberId: bill.value.userBillId!,
-      providedAmount: bill.value.amount!,
-      providedPaid: double.parse(makePaymentController.text) + bill.value.paid!,
-      providedBalance: bill.value.amount! - double.parse(makePaymentController.text),
-    );
-    var response = await billProvider.payBills(request);
+//       appLogger(fpxMerchantPublicKey);
+//     } else {
+//       fpxMerchantApiKey = dotenv.env['fpxMerchantApiKey']!;
+//       fpxMerchantPublicKey = dotenv.env['fpxMerchantPublicKey']!;
+//       fpxSecretKey = dotenv.env['fpxSecretKey']!;
+//     }
 
-     if (!verifyResponse(response)) {
-      AppError appError = response;
-      AppSnackbar.errorSnackbar(appError.message ?? 'An error occurred');
-      EasyLoading.dismiss();
-      return;
-    }
+//     url = Uri.parse('${dotenv.env['UrlFpx']!}/$fpxMerchantPublicKey');
+//     fpxModel = Get.arguments['fpxModel'];
+//     // appLogger(fpxModel!.txnBuyerName);
+//     newRoute = Get.arguments['newRoute'];
+//     appLogger('category ::$category');
 
-    Get.back(result: true);
-    AppSnackbar.successSnackbar('Payment successful');
-    EasyLoading.dismiss();
-  }
-}
+//     appLogger('start 1');
+    
+
+//     super.onInit();
+
+//   }
+
+//   String getSignature() {
+//     String signature;
+
+//     List<int> key = utf8.encode(fpxSecretKey!);
+//     List<int> bytes = utf8.encode('$fpxMerchantApiKey|'
+//         '${fpxModel!.txnAmount.toStringAsFixed(2)}|'
+//         '${fpxModel!.txnBuyerEmail}|'
+//         '${fpxModel!.txnBuyerName}|'
+//         '${fpxModel!.txnBuyerPhone}|'
+//         '${fpxModel!.txnOrderId}|'
+//         '${fpxModel!.txnProductDesc}|'
+//         '${fpxModel!.txnProductName}');
+
+//     Hmac hmacSha256 = Hmac(sha256, key);
+//     Digest digest = hmacSha256.convert(bytes);
+
+//     signature = digest.toString();
+
+//     return signature;
+//   }
+
+//   // mq() async {
+//   //   appLogger("Setup mq");
+//   //   var client = Client(
+//   //     settings: ConnectionSettings(
+//   //       host: "mq.berrypay.dev",
+//   //       port: 25671,
+//   //       authProvider: const PlainAuthenticator("arsyad", "arsyad"),
+//   //       virtualHost: "bpg",
+//   //       onBadCertificate: (p0) => true,
+//   //       tlsContext: SecurityContext(withTrustedRoots: true),
+//   //     ),
+//   //   );
+
+//   //   bool isReceived = false;
+//   //   Channel channel = await client.channel();
+//   //   Queue queue = await channel
+//   //       .queue("REMITX.${fpxModel!.txnOrderId}"); //remitx.${transactionI}D
+//   //   Consumer consumer = await queue.consume();
+
+//   //   consumer.listen(
+//   //     (event) {
+//   //       appLogger('mq listeningggggg');
+//   //       isReceived = true;
+//   //       appLogger(event.payloadAsString);
+//   //       if (isReceived) {
+//   //         consumer.cancel();
+//   //         Get.back();
+//   //       }
+//   //     },
+//   //     // onDone: () => queue.delete(),
+//   //   );
+//   // }
+
+//   getFpxTransaction() async {
+//     appLogger('start getFpxTransaction');
+//     isLoading(true);
+
+//     var response = await remittanceRepo.getFpxTransaction(PaymentRequeryRequest(
+//       BpgTxnId: fpxModel!.txnOrderId,
+//     ));
+
+//     if (verifyResponse(response)) {
+//       isLoading(false);
+//       appLogger('cannot get');
+//       return;
+//     }
+//     isLoading(false);
+
+//     response as PaymentRequeryResponse;
+
+//     paymentRequery = response.data;
+//     appLogger('paymentRequery ${jsonEncode(paymentRequery)}');
+//     appLogger('category1:: $category');
+
+//     Get.offAndToNamed(newRoute!, arguments: {
+//       'amount': fpxModel!.txnAmount.toStringAsFixed(2),
+//       'txnId': fpxModel!.txnOrderId,
+//       'status': paymentRequery![0].paymentModeStatus,
+//       'message': paymentRequery![0].paymentModeStatusMsg,
+//       'description': paymentRequery![0].bizSysStatusMsg,
+//       'statusRemit': paymentRequery![0].bizSysStatus,
+//       'paymentMode': paymentRequery![0].paymentMode,
+//       'category': category
+//     });
+//   }
+// }

@@ -22,6 +22,7 @@ abstract class Routes {
   static const GUARD_VISITOR_SCAN = _Paths.GUARD + _Paths.GUARD_VISITOR_SCAN;
   static const GUARD_VISITOR_DETAILS =
       _Paths.GUARD + _Paths.GUARD_VISITOR_DETAILS;
+  static const PAYMENT_GATEWAY = _Paths.PAYMENT_GATEWAY;
 }
 
 abstract class _Paths {
@@ -44,4 +45,5 @@ abstract class _Paths {
   static const GUARD_VISITOR = '/guard-visitor';
   static const GUARD_VISITOR_SCAN = '/guard-visitor-scan';
   static const GUARD_VISITOR_DETAILS = '/guard-visitor-details';
+  static const PAYMENT_GATEWAY = '/payment-gateway';
 }
