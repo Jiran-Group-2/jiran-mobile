@@ -85,7 +85,7 @@ class GuardVisitorDetailsView extends GetView<GuardVisitorDetailsController> {
                   child: AppButtonRounded(
                     title: 'Reject',
                     color: AppColors.red,
-                    onTap: () {},
+                    onTap: () => controller.updateVisitorConfirmation(false),
                     borderRadius: 8,
                   ),
                 ),
@@ -95,7 +95,7 @@ class GuardVisitorDetailsView extends GetView<GuardVisitorDetailsController> {
                   child: AppButtonRounded(
                     title: 'Approve',
                     color: AppColors.green,
-                    onTap: () {},
+                    onTap: () => controller.updateVisitorConfirmation(true),
                     borderRadius: 8,
                   ),
                 ),

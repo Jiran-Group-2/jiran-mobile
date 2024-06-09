@@ -75,16 +75,26 @@ class VisitorUpdateModel {
     final String? providedVisitorName;
     final String? providedVisitorMobileNo;
     final String? providedVisitorNRIC;
-    final String? providedQuantity;
+    final int? providedQuantity;
     final String? providedPurposeOfVisit;
-    final String? providedVehicleType;
+    final int? providedVehicleType;
     final String? providedPlateNo;
     final int? providedUnitNumberID;
     final int? providedCreatedByID;
+    final String? providedStatus;
     
-
     VisitorUpdateModel({
-      this.providedVisitorID, this.providedVisitorName, this.providedVisitorMobileNo, this.providedVisitorNRIC, this.providedQuantity, this.providedPurposeOfVisit, this.providedVehicleType, this.providedPlateNo, this.providedUnitNumberID, this.providedCreatedByID
+      this.providedVisitorID,
+      this.providedVisitorName,
+      this.providedVisitorMobileNo,
+      this.providedVisitorNRIC,
+      this.providedQuantity,
+      this.providedPurposeOfVisit,
+      this.providedVehicleType,
+      this.providedPlateNo,
+      this.providedUnitNumberID,
+      this.providedCreatedByID,
+      this.providedStatus
     });
 
     factory VisitorUpdateModel.fromJson(Map<String, dynamic> json) => _$VisitorUpdateModelFromJson(json);

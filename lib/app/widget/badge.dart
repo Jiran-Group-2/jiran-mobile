@@ -32,6 +32,8 @@ class StatusBadge extends StatelessWidget {
         return Colors.green;
       case 'P':
         return Colors.orange;
+      case 'I':
+        return Colors.red;
       default:
         return Colors.grey;
     }
@@ -44,7 +46,7 @@ class StatusBadge extends StatelessWidget {
       case 'P':
         return 'Pending Approval';
       case 'I':
-        return 'Inactive';
+        return 'Rejected';
       default:
         return 'Unknown';
     }

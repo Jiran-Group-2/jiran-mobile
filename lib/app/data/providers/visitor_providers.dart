@@ -71,15 +71,13 @@ class VisitorProvider extends GetConnect {
   }
 
   updateVisitor(VisitorUpdateModel visitor) async {
-    var response = await httpClient.post('/User/UpdateVisitor?providedVisitorID=${visitor.providedVisitorID}&providedVisitorName=${visitor.providedVisitorName}&providedVisitorMobileNo=${visitor.providedVisitorMobileNo}&providedVisitorNRIC=${visitor.providedVisitorNRIC}&providedQuantity=${visitor.providedQuantity}&providedPurposeOfVisit=${visitor.providedPurposeOfVisit}&providedVehicleType=${visitor.providedVehicleType}&providedPlateNo=${visitor.providedPlateNo}&providedUnitNumberID=${visitor.providedUnitNumberID}&providedCreatedByID=${visitor.providedCreatedByID}?');
+    var response = await httpClient.post('/User/UpdateVisitor?providedVisitorID=${visitor.providedVisitorID}&providedVisitorName=${visitor.providedVisitorName}&providedVisitorMobileNo=${visitor.providedVisitorMobileNo}&providedVisitorNRIC=${visitor.providedVisitorNRIC}&providedQuantity=${visitor.providedQuantity}&providedPurposeOfVisit=${visitor.providedPurposeOfVisit}&providedVehicleType=${visitor.providedVehicleType}&providedPlateNo=${visitor.providedPlateNo}&providedUnitNumberID=${visitor.providedUnitNumberID}&providedCreatedByID=${visitor.providedCreatedByID}&providedStatus=${visitor.providedStatus}');
     appLogger(response.request!.url);
     appLogger(response.status.code);
 
     if (response.status.isOk) {
       appLogger(response.bodyString);
-      List<dynamic> jsonData = jsonDecode(response.bodyString!);
-      List<VisitorModel> baseResponse = jsonData.map((json) => VisitorModel.fromJson(json)).toList();
-      return baseResponse;
+      return true;
     } else {
       return AppError('Connection error!');
     }

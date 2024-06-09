@@ -58,7 +58,11 @@ class GuardVisitorView extends GetView<GuardVisitorController> {
                     title: controller.visitors[index].visitorVehiclePlate,
                     subtitle: controller.visitors[index].visitorVehicle,
                     status: StatusBadge(status: controller.visitors[index].approvalStatus!),
-                    onTap: () => Get.toNamed(Routes.GUARD_VISITOR_DETAILS, arguments: controller.visitors[index].obs),
+                    onTap: () => Get.toNamed(Routes.GUARD_VISITOR_DETAILS, arguments: controller.visitors[index].obs)!.then((value) {
+                      if (value != null) {
+                        controller.getVisitors();
+                      }
+                    }),
                   );
                 }
               )),

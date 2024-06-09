@@ -104,9 +104,13 @@ class GuardHomeView extends GetView<GuardHomeController> {
                 itemBuilder: (context, index) {
                   return StatusListTile(
                     title: controller.visitors[index].visitorVehiclePlate,
-                    subtitle: controller.visitors[index].visitorVehicle,
+                    subtitle: controller.visitors[index].visitorPurposeOfVisit,
                     status: StatusBadge(status: controller.visitors[index].approvalStatus!),
-                    onTap: () => Get.toNamed(Routes.GUARD_VISITOR_DETAILS, arguments: controller.visitors[index].obs),
+                    onTap: () => Get.toNamed(Routes.GUARD_VISITOR_DETAILS, arguments: controller.visitors[index].obs)!.then((value) {
+                      if (value != null) {
+                        controller.onRefresh();
+                      }
+                    }),
                   );
                 }
               )),

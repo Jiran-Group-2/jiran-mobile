@@ -78,12 +78,13 @@ VisitorUpdateModel _$VisitorUpdateModelFromJson(Map<String, dynamic> json) =>
       providedVisitorName: json['providedVisitorName'] as String?,
       providedVisitorMobileNo: json['providedVisitorMobileNo'] as String?,
       providedVisitorNRIC: json['providedVisitorNRIC'] as String?,
-      providedQuantity: json['providedQuantity'] as String?,
+      providedQuantity: (json['providedQuantity'] as num?)?.toInt(),
       providedPurposeOfVisit: json['providedPurposeOfVisit'] as String?,
-      providedVehicleType: json['providedVehicleType'] as String?,
+      providedVehicleType: (json['providedVehicleType'] as num?)?.toInt(),
       providedPlateNo: json['providedPlateNo'] as String?,
       providedUnitNumberID: (json['providedUnitNumberID'] as num?)?.toInt(),
       providedCreatedByID: (json['providedCreatedByID'] as num?)?.toInt(),
+      providedStatus: json['providedStatus'] as String?,
     );
 
 Map<String, dynamic> _$VisitorUpdateModelToJson(VisitorUpdateModel instance) =>
@@ -98,4 +99,5 @@ Map<String, dynamic> _$VisitorUpdateModelToJson(VisitorUpdateModel instance) =>
       'providedPlateNo': instance.providedPlateNo,
       'providedUnitNumberID': instance.providedUnitNumberID,
       'providedCreatedByID': instance.providedCreatedByID,
+      'providedStatus': instance.providedStatus,
     };

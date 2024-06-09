@@ -36,7 +36,7 @@ class BillProvider extends GetConnect {
   }
 
   payBills(PayBillRequest request) async {
-    var response = await httpClient.post('/Bill/UpdateUnitBill?UnitBillID=${request.unitNumberId}&providedAmount=${request.providedAmount}&providedPaid=${request.providedPaid}&providedBalance=${request.providedBalance}');
+    var response = await httpClient.post('/Bill/UpdateUnitBill?UnitBillID=${request.unitNumberId}&providedPaid=${request.providedPaid}');
     appLogger(response.request!.url);
     appLogger(response.status.code);
 
