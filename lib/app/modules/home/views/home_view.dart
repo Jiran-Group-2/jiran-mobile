@@ -110,7 +110,7 @@ class BillsCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const AutoSizeText('Your current bills are:', style: TextStyle(color: AppColors.white, fontSize: 8, fontWeight: FontWeight.bold),),
-                  Obx(() => AutoSizeText('RM ${controller.billAmount.value.toStringAsFixed(2)}', style: const TextStyle(color: AppColors.white, fontSize: 34, fontWeight: FontWeight.bold), minFontSize: 16)),
+                  Obx(() => AutoSizeText('RM ${controller.billAmount.value.toStringAsFixed(2)}', style: const TextStyle(color: AppColors.white, fontSize: 34, fontWeight: FontWeight.bold), minFontSize: 16, maxLines: 1)),
                   const SizedBox(height: 8),
                   InkWell(
                     onTap: () => Get.toNamed(Routes.BILLS),
@@ -121,7 +121,7 @@ class BillsCard extends StatelessWidget {
                         color: AppColors.primary,
                         borderRadius: BorderRadius.circular(8)
                       ),
-                      child: const Center(child: AutoSizeText('Pay Now', style: TextStyle(color: AppColors.white, fontSize: 8, fontWeight: FontWeight.bold),)),
+                      child: const Center(child: AutoSizeText('Pay Now', style: TextStyle(color: AppColors.white, fontSize: 8, fontWeight: FontWeight.bold))),
                     ),
                   ),
                 ],

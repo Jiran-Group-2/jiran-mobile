@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class AppTextField extends StatelessWidget {
-  const AppTextField({super.key, required this.controller, this.title = 'Title', this.hintText, this.isRequired = false, this.keyboardType, this.textInputAction, this.inputFormatters, this.readOnly = false});
+  const AppTextField({super.key, required this.controller, this.title = 'Title', this.hintText, this.isRequired = false, this.keyboardType, this.textInputAction, this.inputFormatters, this.readOnly = false, this.minLength});
 
   final TextEditingController controller;
   final String title;
@@ -13,6 +13,7 @@ class AppTextField extends StatelessWidget {
   final TextInputType? keyboardType;
   final TextInputAction? textInputAction;
   final List<TextInputFormatter>? inputFormatters;
+  final int? minLength;
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +50,10 @@ class AppTextField extends StatelessWidget {
 
             if (value == null || value.isEmpty) {
               return 'Please enter $title';
+            }
+
+            if (minLength != null && value.length < minLength!) {
+              return 'Please enter at least $minLength characters';
             }
 
             return null;

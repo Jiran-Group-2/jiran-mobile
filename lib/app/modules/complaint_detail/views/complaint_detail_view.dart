@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jiran_app/app/core/formatter.dart';
 import 'package:jiran_app/app/core/theme.dart';
+import 'package:jiran_app/app/widget/badge.dart';
 
 import '../controllers/complaint_detail_controller.dart';
 
@@ -49,12 +50,13 @@ class ComplaintDetailView extends GetView<ComplaintDetailController> {
                     ),
                     minFontSize: 8,
                   ),
+                  StatusBadge(status: controller.complaintModel.value.status!),
                   const SizedBox(height: 24),
 
                   AutoSizeText(controller.complaintModel.value.complaintDescription ?? 'Description',
                     style: const TextStyle(
                       color: AppColors.black,
-                      fontSize: 10,
+                      fontSize: 12,
                     ),
                     minFontSize: 8,
                   ),

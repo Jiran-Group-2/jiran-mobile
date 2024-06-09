@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:jiran_app/app/core/formatter.dart';
 import 'package:jiran_app/app/core/theme.dart';
 import 'package:jiran_app/app/routes/app_pages.dart';
+import 'package:jiran_app/app/widget/badge.dart';
 import 'package:jiran_app/app/widget/list_tile.dart';
 
 import '../controllers/complaint_controller.dart';
@@ -54,9 +55,10 @@ class ComplaintView extends GetView<ComplaintController> {
                 itemCount: controller.complaints.length,
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
-                  return AppListTile(
+                  return StatusListTile(
                     title: '${controller.complaints[index].complaintSubject}',
                     subtitle: dateTimeFormat.format(controller.complaints[index].createdDate!),
+                    status: StatusBadge(status: controller.complaints[index].status!),
                     onTap: () => Get.toNamed(Routes.COMPLAINT_DETAIL, arguments: controller.complaints[index].obs),
                   );
                 }

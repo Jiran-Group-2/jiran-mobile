@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
 import 'package:jiran_app/app/core/theme.dart';
@@ -64,7 +65,13 @@ class VisitorAddView extends GetView<VisitorAddController> {
                             title: 'Phone',
                             hintText: 'Enter phone number',
                             keyboardType: TextInputType.phone,
+                            inputFormatters: [
+                              // Limit only 11 digit max, 9 digit min
+                              LengthLimitingTextInputFormatter(11),
+                              FilteringTextInputFormatter.digitsOnly,
+                            ],
                             isRequired: true,
+                            minLength: 9,
                           ),
           
                           AppTextField(
@@ -72,6 +79,10 @@ class VisitorAddView extends GetView<VisitorAddController> {
                             title: 'NRIC',
                             hintText: 'Enter NRIC',
                             keyboardType: TextInputType.number,
+                            inputFormatters: [
+                              LengthLimitingTextInputFormatter(12),
+                              FilteringTextInputFormatter.digitsOnly,
+                            ],
                             isRequired: true,
                           ),
           
@@ -81,6 +92,10 @@ class VisitorAddView extends GetView<VisitorAddController> {
                             hintText: 'Enter quantity',
                             keyboardType: TextInputType.number,
                             isRequired: true,
+                            inputFormatters: [
+                              FilteringTextInputFormatter.digitsOnly,
+                              LengthLimitingTextInputFormatter(2),
+                            ],
                           ),
           
                           AppTextField(
@@ -96,8 +111,10 @@ class VisitorAddView extends GetView<VisitorAddController> {
                             hintText: 'Enter plate number',
                             isRequired: true,
                             textInputAction: TextInputAction.done,
+                            inputFormatters: [
+                              LengthLimitingTextInputFormatter(10),
+                            ],
                           ),
-      
       
                           const SizedBox(height: 24),
                           AppButtonRounded(

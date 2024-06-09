@@ -29,7 +29,7 @@ class ComplaintAddView extends GetView<ComplaintAddController> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const AutoSizeText('Log a Complaint', 
+                    const AutoSizeText('Help to change', 
                       style: TextStyle(
                         color: AppColors.black,
                         fontSize: 16,
@@ -90,7 +90,7 @@ class ComplaintAddView extends GetView<ComplaintAddController> {
                             controller: controller.complaintSubjectController,
                             title: 'Subject',
                             hintText: 'Your subject here',
-                            keyboardType: TextInputType.number,
+                            keyboardType: TextInputType.text,
                             isRequired: true,
                           ),
           
@@ -98,7 +98,7 @@ class ComplaintAddView extends GetView<ComplaintAddController> {
                             controller: controller.complaintDescriptionController,
                             title: 'Description',
                             hintText: 'Your description here',
-                            keyboardType: TextInputType.number,
+                            keyboardType: TextInputType.text,
                             isRequired: true,
                           ),      
       

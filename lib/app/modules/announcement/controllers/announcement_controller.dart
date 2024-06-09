@@ -26,6 +26,9 @@ class AnnouncementController extends GetxController {
     }
 
     announcements.value = response;
+
+    // Sort by date
+    announcements.sort((a, b) => b.createdDate!.compareTo(a.createdDate!));
     EasyLoading.dismiss();
   }
 }

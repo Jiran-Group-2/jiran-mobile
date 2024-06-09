@@ -1,5 +1,5 @@
 // Global variable
-bool isProd = false;
+bool isProd = true;
 String apiUrl = '';
 String stripePubKey = '';
 String stripeSecret = '';

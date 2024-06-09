@@ -26,6 +26,9 @@ class ComplaintController extends GetxController {
     }
 
     complaints.value = response;
+
+    // Sort complaints based on the latest complaint
+    complaints.sort((a, b) => b.createdDate!.compareTo(a.createdDate!));
     EasyLoading.dismiss();
   }
 }
