@@ -1,4 +1,4 @@
-package com.kimsformatics.jiran.jiran_app
+package com.kimsformatics.jiran
 
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.android.FlutterFragmentActivity

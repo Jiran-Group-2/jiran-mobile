@@ -50,5 +50,9 @@
 	<key>NSCameraUsageDescription
 	&lt;string&gt;To scan cards&lt;/string&gt;</key>
 	<string>To scan cards</string>
+	<key>io.flutter.embedded_views_preview</key>
+	<true/>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app needs photos access to get QR code from photo library</string>
 </dict>
 </plist>

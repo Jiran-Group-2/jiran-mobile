@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jiran_app/app/core/theme.dart';
 import 'package:jiran_app/app/routes/app_pages.dart';
+import 'package:jiran_app/app/widget/badge.dart';
 import 'package:jiran_app/app/widget/list_tile.dart';
 
 import '../controllers/visitor_controller.dart';
@@ -53,10 +54,10 @@ class VisitorView extends GetView<VisitorController> {
                 itemCount: controller.visitors.length,
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
-                  return AppListTile(
+                  return StatusListTile(
                     title: controller.visitors[index].visitorVehiclePlate,
-                    subtitle: controller.visitors[index].visitorVehicle,
-                    notes: controller.visitors[index].visitorName,
+                    subtitle: controller.visitors[index].visitorPurposeOfVisit,
+                    status: StatusBadge(status: controller.visitors[index].approvalStatus!),
                     onTap: () => Get.toNamed(Routes.VISITOR_DETAIL, arguments: controller.visitors[index].obs),
                   );
                 }

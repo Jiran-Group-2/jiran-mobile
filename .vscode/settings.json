@@ -2,8 +2,9 @@
     "cmake.sourceDirectory": "/Users/hakimzulkhibri/Documents/Workstation/UTM/AD/jiran_app/linux",
     "cSpell.words": [
         "Hmac",
-        "jiran"
+        "jiran",
+        "unawaited"
     ],
-    "java.configuration.updateBuildConfiguration": "interactive",
+    "java.configuration.updateBuildConfiguration": "automatic",
     "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx2G -Xms100m -Xlog:disable"
 }

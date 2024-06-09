@@ -101,6 +101,7 @@ class GuardHomeView extends GetView<GuardHomeController> {
               Obx(() => ListView.builder(
                 itemCount: controller.visitors.length,
                 shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
                   return StatusListTile(
                     title: controller.visitors[index].visitorVehiclePlate,
@@ -119,7 +120,7 @@ class GuardHomeView extends GetView<GuardHomeController> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => Get.toNamed(Routes.GUARD_VISITOR_SCAN)!.then((value) {
+        onPressed: () => Get.toNamed(Routes.GUARD_VISITOR_SCAN, arguments: controller.visitors)!.then((value) {
           if (value != null) {
             controller.getVisitors();
           }
