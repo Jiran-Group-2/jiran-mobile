@@ -23,7 +23,7 @@ class PaymentGatewayView extends GetView<PaymentGatewayController> {
           padding: const EdgeInsets.all(8),
           child: Column(
             children: [
-              Text(controller.currentUrl.toString()),
+              // Obx(() => Text(controller.currentUrl.toString())),
               Obx(() => controller.currentProgress.value != 1.0 ? LinearProgressIndicator(value: controller.currentProgress.value) : const SizedBox.shrink()),
               Obx(() => Visibility(
                 visible: controller.isCountdown.value,

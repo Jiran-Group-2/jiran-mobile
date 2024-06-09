@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jiran_app/app/core/formatter.dart';
 import 'package:jiran_app/app/core/theme.dart';
+import 'package:jiran_app/app/data/models/fpx_model.dart';
 import 'package:jiran_app/app/routes/app_pages.dart';
 
 import '../controllers/bills_detail_controller.dart';
@@ -173,7 +174,16 @@ class BillsDetailView extends GetView<BillsDetailController> {
                   ],
                 )),
                 ElevatedButton(
-                  onPressed: () => Get.offAndToNamed(Routes.PAY_SIM_AMOUNT, arguments: controller.bill),
+                  onPressed: () => Get.offAndToNamed(Routes.PAYMENT_GATEWAY, arguments: FpxModel(
+                    txnAmount: controller.bill.value.amount!.toDouble(),
+                    txnBuyerEmail: controller.sp.getUser()?.email ?? '${controller.sp.getUser()!.userLogin}@jiran.com',
+                    txnBuyerName: controller.sp.getUser()?.name ?? 'John Doe',
+                    txnBuyerPhone: controller.sp.getUser()?.mobileNo ?? '01234567890',
+                    txnOrderId: 'Jiran ${DateTime.now().microsecondsSinceEpoch.toString()}',
+                    txnProductDesc: controller.bill.value.bill!.billSubject!,
+                    txnProductName: controller.bill.value.bill!.billSubject!,
+                    newRoute: Routes.HOME
+                  ).obs),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.primary
                   ),

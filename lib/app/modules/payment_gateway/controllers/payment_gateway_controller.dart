@@ -6,11 +6,17 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:get/get.dart';
 import 'package:jiran_app/app/core/logger.dart';
 import 'package:jiran_app/app/core/variables.dart';
+import 'package:jiran_app/app/data/models/bill_model.dart';
 import 'package:jiran_app/app/data/models/fpx_model.dart';
+import 'package:jiran_app/app/data/providers/bill_providers.dart';
+import 'package:jiran_app/app/data/providers/storage_provider.dart';
+import 'package:jiran_app/controller_export.dart';
 
 class PaymentGatewayController extends GetxController {
 
   late Rx<FpxModel> fpxModel;
+  BillProvider billProvider = Get.find<BillProvider>();
+  StorageProvider sp = Get.find<StorageProvider>();
 
   RxBool isCountdown = false.obs;
   RxBool isCanGoBack = false.obs;
@@ -21,8 +27,8 @@ class PaymentGatewayController extends GetxController {
 
   @override
   void onInit() {
-    fpxModel = Get.arguments['fpxModel'].obs;
-    currentUrl.value = Uri.parse(fpxResponseApiUrl);
+    fpxModel = Get.arguments;
+    currentUrl.value = Uri.parse(fpxApiUrl);
     super.onInit();
   }
 
@@ -54,14 +60,39 @@ class PaymentGatewayController extends GetxController {
     if (url == WebUri(fpxResponseApiUrl)) {
       isCountdown(true);
 
-      timer = Timer.periodic(const Duration(seconds: 1), (_) {
+      timer = Timer.periodic(const Duration(seconds: 1), (_) async {
+        appLogger('countdown:: $countdown');
         if (countdown.value > -1) {
           countdown.value--;
         }
         if (countdown.value == 0) {
-          /// Callback
-          // Navigator.pushReplacement(context, widget.newRoute);
-          Get.offAndToNamed(fpxModel.value.newRoute);
+          EasyLoading.show();
+
+          controller.getHtml().then((value) {
+            if (value!.contains('Not Successful')) {
+              Get.offAllNamed(fpxModel.value.newRoute);
+              EasyLoading.dismiss();
+              AppSnackbar.errorSnackbar('Payment failed');
+              return;
+            }
+          });
+
+          PayBillRequest payBillRequest = PayBillRequest(
+            unitNumberId: sp.getUser()!.unitNumberId!,
+            providedPaid: fpxModel.value.txnAmount,
+          );
+
+          var response = await billProvider.payBills(payBillRequest);
+
+          if (!verifyResponse(response)) {
+            AppError appError = response;
+            AppSnackbar.errorSnackbar(appError.message ?? 'An error occurred');
+          } else {
+            AppSnackbar.successSnackbar('Payment success!');
+          }
+
+          EasyLoading.dismiss();
+          Get.offAllNamed(fpxModel.value.newRoute);
         }
         appLogger('$countdown');
       });
@@ -79,5 +110,5 @@ class PaymentGatewayController extends GetxController {
   onProgressChanged(InAppWebViewController controller, int progress) {
     currentProgress(progress / 100);
     appLogger(currentProgress);
-  }  
+  }
 }

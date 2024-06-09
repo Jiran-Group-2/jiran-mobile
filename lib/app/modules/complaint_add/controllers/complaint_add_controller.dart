@@ -72,5 +72,4 @@ class ComplaintAddController extends GetxController {
     Get.back(result: true);
     EasyLoading.dismiss();
   }
-  
 }

@@ -140,15 +140,11 @@ Map<String, dynamic> _$FloorToJson(Floor instance) => <String, dynamic>{
 PayBillRequest _$PayBillRequestFromJson(Map<String, dynamic> json) =>
     PayBillRequest(
       unitNumberId: (json['unitNumberId'] as num).toInt(),
-      providedAmount: (json['providedAmount'] as num).toDouble(),
       providedPaid: (json['providedPaid'] as num).toDouble(),
-      providedBalance: (json['providedBalance'] as num).toDouble(),
     );
 
 Map<String, dynamic> _$PayBillRequestToJson(PayBillRequest instance) =>
     <String, dynamic>{
       'unitNumberId': instance.unitNumberId,
-      'providedAmount': instance.providedAmount,
       'providedPaid': instance.providedPaid,
-      'providedBalance': instance.providedBalance,
     };

@@ -82,7 +82,6 @@ class ComplaintAddView extends GetView<ComplaintAddController> {
                             controller: controller.complaintLocationController,
                             title: 'Location',
                             hintText: 'Where do this thing happen?',
-                            keyboardType: TextInputType.phone,
                             isRequired: true,
                           ),
           
@@ -90,7 +89,6 @@ class ComplaintAddView extends GetView<ComplaintAddController> {
                             controller: controller.complaintSubjectController,
                             title: 'Subject',
                             hintText: 'Your subject here',
-                            keyboardType: TextInputType.text,
                             isRequired: true,
                           ),
           
@@ -98,9 +96,8 @@ class ComplaintAddView extends GetView<ComplaintAddController> {
                             controller: controller.complaintDescriptionController,
                             title: 'Description',
                             hintText: 'Your description here',
-                            keyboardType: TextInputType.text,
                             isRequired: true,
-                          ),      
+                          ),
       
                           const SizedBox(height: 24),
                           AppButtonRounded(
